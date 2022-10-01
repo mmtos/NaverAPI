@@ -1,7 +1,6 @@
 package com.naverapi.naverapi.component.api;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -13,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class NaverBlogSearchApi {
+public class NaverSearchApi {
 
     @Value("${NAVER-CLINET}")
     private String clientId;
@@ -21,7 +20,7 @@ public class NaverBlogSearchApi {
     @Value("${NAVER-KEY}")
     private String ClientKey;
 
-    public String search( String qeury ) {
+    public String search( String url, String qeury, String option ) {
         StringBuilder responseBody = new StringBuilder();
         // API에서 qeury는 UTF-8 인코딩을 명시하고 있습니다.
         try {
@@ -30,7 +29,7 @@ public class NaverBlogSearchApi {
             throw new RuntimeException("Query incoding fail", e);
         }
         // URL 세팅
-        String apiUrl = "https://openapi.naver.com/v1/search/blog.json?query=" + qeury;
+        String apiUrl = url + qeury + option;
         // Key Setting
         Map<String, String> requestHeaders = new HashMap<>();
         requestHeaders.put("X-Naver-Client-Id", clientId);
