@@ -2,14 +2,14 @@
 <html>
 <head>
     <title>스프링 부트 웹 서비스</title>
-    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html"; charset=UTF-8"/>
 </head>
 <body>
-    <h1>스프링 부트로 시작하는 웹 서비스 v2</h1>
-    <div class="col-md-12">
-        <!-- 로그인 영역 -->
-        <div class="row">
-            <div class="col-md-6">
+<h1>스프링 부트로 시작하는 웹 서비스 v2</h1>
+<div class="col-md-12">
+    <!-- 로그인 영역 -->
+    <div class="row">
+        <div class="col-md-6">
             {{#user}}
                 Logged in as: <span id="user">{{user.name}}</span>
                 <br/>
@@ -22,8 +22,8 @@
             {{^user}}
                 <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
             {{/user}}
-            </div>
         </div>
     </div>
+</div>
 </body>
 </html>

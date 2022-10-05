@@ -3,6 +3,7 @@ spring:
     include:
       - api
       - oauth
+      - notificated
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver

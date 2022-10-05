@@ -36,3 +36,4 @@ build/
 ### property ###
 application-api.properties
 application-oauth.yml
+application-notificated.yml
