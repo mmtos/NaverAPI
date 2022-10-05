@@ -1,4 +1,4 @@
-package com.naverapi.naverapi.domain.apirequests;
+package com.naverapi.naverapi.domain.apirequest;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

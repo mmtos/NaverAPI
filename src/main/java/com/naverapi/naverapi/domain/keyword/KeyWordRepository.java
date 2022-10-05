@@ -1,4 +1,4 @@
-package com.naverapi.naverapi.domain.keywords;
+package com.naverapi.naverapi.domain.keyword;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

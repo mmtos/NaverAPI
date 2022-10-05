@@ -1,12 +1,10 @@
-package com.naverapi.naverapi.interfaces.dtos.apirequests;
+package com.naverapi.naverapi.interfaces.dto.apirequest;
 
-import com.naverapi.naverapi.domain.apirequests.ApiRequest;
+import com.naverapi.naverapi.domain.apirequest.ApiRequest;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.Column;
 
 @Getter
 @Setter

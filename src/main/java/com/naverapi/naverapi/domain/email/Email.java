@@ -1,7 +1,6 @@
-package com.naverapi.naverapi.domain.emails;
+package com.naverapi.naverapi.domain.email;
 
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +9,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity(name = "email")
-public class Emails {
+public class Email {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

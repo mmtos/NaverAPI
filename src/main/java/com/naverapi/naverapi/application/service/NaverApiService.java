@@ -2,7 +2,7 @@ package com.naverapi.naverapi.application.service;
 
 import com.naverapi.naverapi.component.api.NaverSearchApi;
 import com.naverapi.naverapi.domain.NaverBlogResultRepository;
-import com.naverapi.naverapi.interfaces.dtos.NaverBlogResultSaveDto;
+import com.naverapi.naverapi.interfaces.dto.NaverBlogResultSaveDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;

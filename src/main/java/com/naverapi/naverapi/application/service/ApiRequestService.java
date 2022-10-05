@@ -1,7 +1,7 @@
 package com.naverapi.naverapi.application.service;
 
-import com.naverapi.naverapi.domain.apirequests.ApiRequestRepository;
-import com.naverapi.naverapi.interfaces.dtos.apirequests.ApiRequestSaveDto;
+import com.naverapi.naverapi.domain.apirequest.ApiRequestRepository;
+import com.naverapi.naverapi.interfaces.dto.apirequest.ApiRequestSaveDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

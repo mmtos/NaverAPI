@@ -1,4 +1,4 @@
-package com.naverapi.naverapi.domain.users;
+package com.naverapi.naverapi.domain.user;
 
 import com.naverapi.naverapi.domain.BaseTimeEntity;
 import lombok.AccessLevel;
@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity(name = "authuser")
-public class Users extends BaseTimeEntity {
+public class User extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,7 +30,7 @@ public class Users extends BaseTimeEntity {
     private String role;
 
     @Builder
-    public Users( String email, String name, String pictureLink, String role) {
+    public User(String email, String name, String pictureLink, String role) {
         this.email = email;
         this.name = name;
         this.pictureLink = pictureLink;
