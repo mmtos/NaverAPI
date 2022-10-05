@@ -34,5 +34,4 @@ build/
 
 
 ### property ###
-application.yml
-application-API-KEY.properties
+application-api.properties
