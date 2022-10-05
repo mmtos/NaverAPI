@@ -1,6 +1,8 @@
 spring:
   profiles:
-    include: api
+    include:
+      - api
+      - oauth
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
