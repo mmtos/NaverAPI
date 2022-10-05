@@ -2,8 +2,8 @@ spring:
   mail:
     host: "smtp.gmail.com"
     port: "587"
-    username: ""
-    password: ""
+    username: "" # 구글 이메일을 입력해주세요
+    password: "" # 구글 인증에서 생성한 비번을 입력해주세요
     properties.mail.smtp:
       auth: "true"
       timeout: "5000"
