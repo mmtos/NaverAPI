@@ -34,4 +34,4 @@ build/
 
 
 ### property ###
-application-API-KEY.properties
+application-api.properties

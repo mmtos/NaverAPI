@@ -15,10 +15,10 @@ import java.util.Map;
 @Component
 public class NaverSearchApi {
 
-    @Value("${NAVER-CLINET}")
+    @Value("${naver.api.clientId}")
     private String clientId;
 
-    @Value("${NAVER-KEY}")
+    @Value("${naver.api.clientKey}")
     private String ClientKey;
 
     public String search( String url ) {
