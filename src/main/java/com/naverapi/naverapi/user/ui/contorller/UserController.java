@@ -1,11 +1,29 @@
 package com.naverapi.naverapi.user.ui.contorller;
 
+import com.naverapi.naverapi.user.infra.SessionUser;
+import java.util.Arrays;
+import javax.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 @RequestMapping("/user")
 @Slf4j
+@RequiredArgsConstructor
 public class UserController {
+    private final HttpSession httpSession;
+
+    @GetMapping
+    public String index(Model model)
+    {
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        if(user != null){
+            model.addAttribute("user",user);
+        }
+        return "user/index";
+    }
 }
