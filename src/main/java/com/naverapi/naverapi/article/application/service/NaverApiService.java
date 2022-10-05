@@ -3,6 +3,9 @@ package com.naverapi.naverapi.article.application.service;
 import com.naverapi.naverapi.article.component.api.NaverSearchApi;
 import com.naverapi.naverapi.article.domain.NaverBlogResultRepository;
 import com.naverapi.naverapi.article.ui.dto.NaverBlogResultSaveDto;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Iterator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
@@ -11,10 +14,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Iterator;
 
 
 @AllArgsConstructor
