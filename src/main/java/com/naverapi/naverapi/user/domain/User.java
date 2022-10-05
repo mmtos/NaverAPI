@@ -3,40 +3,51 @@ package com.naverapi.naverapi.user.domain;
 import com.naverapi.naverapi.common.BaseTimeEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-@Entity(name = "authuser")
+@NoArgsConstructor
+@Entity(name = "GL_USER")
 public class User extends BaseTimeEntity {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 256, nullable = false)
-    private String email;
-
-    @Column(length = 256, nullable = false)
+    @Column(nullable = false)
     private String name;
 
-    @Column(length = 256, nullable = false)
-    private String pictureLink;
+    @Column(nullable = false)
+    private String email;
 
-    @Column(length = 256, nullable = false)
-    private String role;
+    @Column
+    private String picture;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 
     @Builder
-    public User(String email, String name, String pictureLink, String role) {
-        this.email = email;
+    public User(String name, String email, String picture, Role role){
         this.name = name;
-        this.pictureLink = pictureLink;
+        this.email = email;
+        this.picture = picture;
         this.role = role;
+    }
+
+    public User update(String name, String picture){
+        this.name = name;
+        this.picture = picture;
+        return this;
+    }
+
+    public String getRoleKey(){
+        return this.role.getKey();
     }
 }
