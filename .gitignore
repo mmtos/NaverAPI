@@ -35,4 +35,5 @@ build/
 
 ### property ###
 application-api.properties
-application-oauth.yml
+application-oauth-template.yml
+application-notificated.yml
