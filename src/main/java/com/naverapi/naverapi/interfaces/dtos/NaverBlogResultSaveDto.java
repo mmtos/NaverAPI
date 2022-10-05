@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class NaverBlogResultSaveDto {
-    private String titile;
+    private String title;
     private String postdate;
     private String description;
     private String link;
@@ -19,7 +19,7 @@ public class NaverBlogResultSaveDto {
 
     public NaverBlogResult toEntity(){
         return NaverBlogResult.builder()
-                .titile(titile)
+                .title(title)
                 .postdate(postdate)
                 .description(description)
                 .link(link)
@@ -29,8 +29,8 @@ public class NaverBlogResultSaveDto {
     }
 
     @Builder
-    public NaverBlogResultSaveDto(String titile, String postdate, String description, String link, String bloggerlink, String bloggername) {
-        this.titile = titile;
+    public NaverBlogResultSaveDto(String title, String postdate, String description, String link, String bloggerlink, String bloggername) {
+        this.title = title;
         this.postdate = postdate;
         this.description = description;
         this.link = link;

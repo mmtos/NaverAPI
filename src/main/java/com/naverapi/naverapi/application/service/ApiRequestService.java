@@ -14,7 +14,7 @@ public class ApiRequestService {
     private ApiRequestRepository apiRequestRepository;
 
     @Transactional
-    public boolean saveApiReqestResult( String lastBuildDate, Long total, String url ){
+    public boolean saveApiRequestResult(String lastBuildDate, Long total, String url ){
 
         ApiRequestSaveDto apiRequestSaveDto = new ApiRequestSaveDto(  lastBuildDate, total, url );
         apiRequestRepository.save( apiRequestSaveDto.toEntity() );

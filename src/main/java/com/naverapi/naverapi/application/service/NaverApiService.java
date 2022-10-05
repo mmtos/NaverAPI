@@ -75,7 +75,7 @@ public class NaverApiService {
                 }
 
                 // 요청 정보에 대한 저장 - 성공이든 실패든 저장한다.
-                apiRequestService.saveApiReqestResult( lastBuildDateChanel, totalChanel, url);
+                apiRequestService.saveApiRequestResult( lastBuildDateChanel, totalChanel, url);
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
