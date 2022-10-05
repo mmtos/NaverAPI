@@ -1,7 +1,6 @@
 package com.naverapi.naverapi.user.ui.contorller;
 
 import com.naverapi.naverapi.user.infra.SessionUser;
-import java.util.Arrays;
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
