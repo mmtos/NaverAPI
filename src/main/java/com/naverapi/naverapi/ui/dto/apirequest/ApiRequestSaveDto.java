@@ -1,4 +1,4 @@
-package com.naverapi.naverapi.interfaces.dto.apirequest;
+package com.naverapi.naverapi.ui.dto.apirequest;
 
 import com.naverapi.naverapi.domain.apirequest.ApiRequest;
 import lombok.Builder;

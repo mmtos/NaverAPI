@@ -1,4 +1,4 @@
-package com.naverapi.naverapi.interfaces.contorller;
+package com.naverapi.naverapi.ui.contorller;
 
 import com.naverapi.naverapi.application.service.NaverApiService;
 import com.naverapi.naverapi.component.api.NaverSearchApi;

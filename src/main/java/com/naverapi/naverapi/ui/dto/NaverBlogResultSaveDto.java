@@ -1,4 +1,4 @@
-package com.naverapi.naverapi.interfaces.dto;
+package com.naverapi.naverapi.ui.dto;
 
 import com.naverapi.naverapi.domain.NaverBlogResult;
 import lombok.Builder;
