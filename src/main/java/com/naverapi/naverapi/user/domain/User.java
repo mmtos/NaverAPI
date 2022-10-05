@@ -1,4 +1,4 @@
-package com.naverapi.naverapi.domain.user;
+package com.naverapi.naverapi.user.domain;
 
 import com.naverapi.naverapi.domain.BaseTimeEntity;
 import lombok.AccessLevel;

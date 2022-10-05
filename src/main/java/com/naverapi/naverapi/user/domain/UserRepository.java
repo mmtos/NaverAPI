@@ -1,4 +1,4 @@
-package com.naverapi.naverapi.domain.user;
+package com.naverapi.naverapi.user.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
