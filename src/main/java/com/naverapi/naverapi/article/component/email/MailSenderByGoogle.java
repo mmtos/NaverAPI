@@ -14,7 +14,7 @@ import javax.mail.internet.MimeMessage;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-public class MailSender {
+public class MailSenderByGoogle {
     @Autowired
     private JavaMailSender mailSender;
 
@@ -22,13 +22,15 @@ public class MailSender {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
 
         try {
+
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
-            mimeMessageHelper.setTo( email.getAddress());
-            mimeMessageHelper.setSubject(email.getTitle());
+            mimeMessageHelper.setTo( email.getAddress() );
+            mimeMessageHelper.setSubject(email.getTitle() );
             mimeMessageHelper.setText( email.getMessage(), true);
 
-            mailSender.send(mimeMessage);
+            mailSender.send( mimeMessage );
             log.info("msg send : " + mimeMessage.getMessageID());
+
         } catch ( MessagingException e ) {
             log.info(e.getMessage());
         }
