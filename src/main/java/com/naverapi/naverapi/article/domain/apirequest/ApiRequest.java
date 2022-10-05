@@ -1,6 +1,6 @@
 package com.naverapi.naverapi.article.domain.apirequest;
 
-import com.naverapi.naverapi.domain.BaseTimeEntity;
+import com.naverapi.naverapi.common.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

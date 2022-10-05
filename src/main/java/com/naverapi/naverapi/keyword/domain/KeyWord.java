@@ -1,6 +1,6 @@
 package com.naverapi.naverapi.keyword.domain;
 
-import com.naverapi.naverapi.domain.BaseTimeEntity;
+import com.naverapi.naverapi.common.BaseTimeEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
