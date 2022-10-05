@@ -1,7 +1,6 @@
-package com.naverapi.naverapi.component.schedule;
+package com.naverapi.naverapi.article.component.schedule;
 
-import com.naverapi.naverapi.application.service.NaverApiService;
-import com.naverapi.naverapi.component.api.NaverSearchApi;
+import com.naverapi.naverapi.article.application.service.NaverApiService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

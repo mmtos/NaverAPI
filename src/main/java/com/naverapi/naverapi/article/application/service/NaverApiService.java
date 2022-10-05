@@ -1,8 +1,8 @@
-package com.naverapi.naverapi.application.service;
+package com.naverapi.naverapi.article.application.service;
 
-import com.naverapi.naverapi.component.api.NaverSearchApi;
-import com.naverapi.naverapi.domain.NaverBlogResultRepository;
-import com.naverapi.naverapi.ui.dto.NaverBlogResultSaveDto;
+import com.naverapi.naverapi.article.component.api.NaverSearchApi;
+import com.naverapi.naverapi.article.domain.NaverBlogResultRepository;
+import com.naverapi.naverapi.article.ui.dto.NaverBlogResultSaveDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;

@@ -1,4 +1,4 @@
-package com.naverapi.naverapi.domain;
+package com.naverapi.naverapi.article.domain;
 
 import lombok.*;
 

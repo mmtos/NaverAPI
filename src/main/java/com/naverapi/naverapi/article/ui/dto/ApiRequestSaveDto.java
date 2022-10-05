@@ -1,6 +1,6 @@
-package com.naverapi.naverapi.ui.dto.apirequest;
+package com.naverapi.naverapi.article.ui.dto;
 
-import com.naverapi.naverapi.domain.apirequest.ApiRequest;
+import com.naverapi.naverapi.article.domain.apirequest.ApiRequest;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

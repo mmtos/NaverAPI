@@ -1,6 +1,6 @@
-package com.naverapi.naverapi.ui.dto;
+package com.naverapi.naverapi.article.ui.dto;
 
-import com.naverapi.naverapi.domain.NaverBlogResult;
+import com.naverapi.naverapi.article.domain.NaverBlogResult;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

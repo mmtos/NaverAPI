@@ -1,7 +1,7 @@
-package com.naverapi.naverapi.ui.contorller;
+package com.naverapi.naverapi.article.ui.contorller;
 
-import com.naverapi.naverapi.application.service.NaverApiService;
-import com.naverapi.naverapi.component.api.NaverSearchApi;
+import com.naverapi.naverapi.article.application.service.NaverApiService;
+import com.naverapi.naverapi.article.component.api.NaverSearchApi;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

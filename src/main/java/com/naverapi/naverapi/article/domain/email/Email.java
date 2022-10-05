@@ -1,4 +1,4 @@
-package com.naverapi.naverapi.domain.email;
+package com.naverapi.naverapi.article.domain.email;
 
 import lombok.AccessLevel;
 import lombok.Getter;

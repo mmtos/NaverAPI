@@ -1,4 +1,4 @@
-package com.naverapi.naverapi.component.api;
+package com.naverapi.naverapi.article.component.api;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
