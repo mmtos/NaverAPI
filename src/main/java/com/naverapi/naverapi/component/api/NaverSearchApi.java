@@ -1,5 +1,6 @@
 package com.naverapi.naverapi.component.api;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -20,22 +21,14 @@ public class NaverSearchApi {
     @Value("${NAVER-KEY}")
     private String ClientKey;
 
-    public String search( String url, String qeury, String option ) {
+    public String search( String url ) {
         StringBuilder responseBody = new StringBuilder();
-        // API에서 qeury는 UTF-8 인코딩을 명시하고 있습니다.
-        try {
-            qeury = URLEncoder.encode(qeury, "UTF-8");
-        } catch ( UnsupportedEncodingException e ) {
-            throw new RuntimeException("Query incoding fail", e);
-        }
-        // URL 세팅
-        String apiUrl = url + qeury + option;
         // Key Setting
         Map<String, String> requestHeaders = new HashMap<>();
         requestHeaders.put("X-Naver-Client-Id", clientId);
         requestHeaders.put("X-Naver-Client-Secret", ClientKey);
         // 요청
-        responseBody.append(get(apiUrl,requestHeaders));
+        responseBody.append(get(url,requestHeaders));
         return responseBody.toString();
     }
 
