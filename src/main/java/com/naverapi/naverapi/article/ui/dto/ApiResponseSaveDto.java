@@ -1,6 +1,6 @@
 package com.naverapi.naverapi.article.ui.dto;
 
-import com.naverapi.naverapi.article.domain.apirequest.ApiRequest;
+import com.naverapi.naverapi.article.domain.apirequest.ApiReponse;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ApiRequestSaveDto {
+public class ApiResponseSaveDto {
 
     private String title;
 
@@ -21,16 +21,16 @@ public class ApiRequestSaveDto {
 
     private String url;
 
-    public ApiRequest toEntity(){
-        return ApiRequest.builder()
+    public ApiReponse toEntity(){
+        return ApiReponse.builder()
                 .lastBuildDate(lastBuildDate)
                 .total(total)
-                .url(url)
+                .requestUrl(url)
                 .build();
     }
 
     @Builder
-    public ApiRequestSaveDto(String lastBuildDate, Long total, String url) {
+    public ApiResponseSaveDto(String lastBuildDate, Long total, String url) {
         this.lastBuildDate = lastBuildDate;
         this.total = total;
         this.url = url;

@@ -29,11 +29,11 @@ public class NaverSearchApiController {
         return "hello";
     }
 
-    @ResponseBody
-    @GetMapping("/test/blog")
-    public ResponseEntity<String> getPlace(@RequestParam(value = "query") String query ) throws Exception {
-        return ResponseEntity.ok( naverApiService.getBlogContentsSortByDate(query) );
-    }
+//    @ResponseBody
+//    @GetMapping("/test/blog")
+//    public ResponseEntity<String> getPlace(@RequestParam(value = "query") String query ) throws Exception {
+//        return ResponseEntity.ok( naverApiService.getBlogContentsSortByDate(query) );
+//    }
 //
 //    @ResponseBody
 //    @GetMapping("/test/blog/dag")
