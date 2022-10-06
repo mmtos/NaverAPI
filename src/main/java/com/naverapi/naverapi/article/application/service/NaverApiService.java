@@ -1,8 +1,8 @@
 package com.naverapi.naverapi.article.application.service;
 
 import com.naverapi.naverapi.article.component.api.NaverSearchApi;
-import com.naverapi.naverapi.article.domain.apirequest.ApiReponse;
-import com.naverapi.naverapi.article.domain.apirequest.ApiReponseRepository;
+import com.naverapi.naverapi.article.domain.apireponse.ApiReponse;
+import com.naverapi.naverapi.article.domain.apireponse.ApiReponseRepository;
 import com.naverapi.naverapi.article.domain.blogarticle.NaverBlogResultRepository;
 import com.naverapi.naverapi.article.ui.dto.ApiResponseSaveDto;
 import com.naverapi.naverapi.article.ui.dto.NaverBlogResultSaveDto;
@@ -46,25 +46,44 @@ public class NaverApiService {
 
 
     @Transactional
-    public String getBlogContentsSortByDate( String keyword ) {
+    public int getBlogContentsSortByDate( String keyword ) {
         // api 요청 로직 ( api 요청은 비동기입니다. )
-        List<ApiReponse> responseList = getTotalResponseResult(keyword);
-        List<NaverBlogResultSaveDto> saveDtoList = getSaveBlogArticleList(responseList);;
+        List<ApiResponseSaveDto> responseList = getTotalResponseResult(keyword, TYPE_BLOG);
+        // 블로그 콘텐츠 관련 목록
+        List<NaverBlogResultSaveDto> saveDtoList = getSaveBlogArticleList(responseList);
         // 저장 로직
         for ( NaverBlogResultSaveDto dto : saveDtoList) {
             naverBlogResultRepository.save(dto.toEntity());
         }
-
-        for( ApiReponse apiReponse : responseList ) {
-            ApiResponseSaveDto dto = ApiResponseSaveDto.builder()
-                                                       .lastBuildDate(apiReponse.getLastBuildDate())
-                                                       .total(apiReponse.getTotal())
-                                                       .url(apiReponse.getRequestUrl())
-                                                       .build();
-            apiReponseRepository.save(dto.toEntity());
+        for( ApiResponseSaveDto apiReponse : responseList ) {
+            apiReponseRepository.save(apiReponse.toEntity());
         }
+        return saveDtoList.size();
+    }
 
-        return "test";
+    private List<ApiResponseSaveDto> getTotalResponseResult( String keyword, int articleType ){
+        List<ApiResponseSaveDto> responseList = new ArrayList<>();
+        for (int i = 0; i < MAX_CNT; i++) {
+            String url = makeUrl(articleType, keyword, (1 + (100*i)) , TYPE_DATE );
+            ApiResponseSaveDto result = apiResponseParser(url);
+            if(result != null) {
+                responseList.add(result);
+            }
+        }
+        return responseList;
+    }
+
+    private List<NaverBlogResultSaveDto> getSaveBlogArticleList( List<ApiResponseSaveDto> apiReponseList ) {
+        List<NaverBlogResultSaveDto> saveList = new ArrayList<>();
+        for ( ApiResponseSaveDto apiResponse : apiReponseList ) {
+            JSONArray item = apiResponse.getItem();
+            Iterator<JSONObject> iter = item.iterator();
+            while(iter.hasNext()) {
+                JSONObject itemEach = (JSONObject) iter.next();
+                saveList.add( 0, parseBlogArticleItem(itemEach));
+            }
+        }
+        return saveList;
     }
 
     public NaverBlogResultSaveDto parseBlogArticleItem( JSONObject item ) {
@@ -74,75 +93,26 @@ public class NaverApiService {
         String title = (String) item.get("title");
         String bloggerlink = (String) item.get("bloggerlink");
         String bloggername = (String) item.get("bloggername");
-
         return new NaverBlogResultSaveDto(
                 title, postdate, description, link, bloggerlink, bloggername );
     }
 
-    private List<NaverBlogResultSaveDto> getSaveBlogArticleList( List<ApiReponse> apiReponseList ) {
-
-        boolean stop = false;
-        List<NaverBlogResultSaveDto> saveList = new ArrayList<>();
-
-        for ( ApiReponse apiResponse : apiReponseList ) {
-            JSONArray item = apiResponse.getItemList();
-            Iterator<JSONObject> iter = item.iterator();
-
-            while(iter.hasNext()) {
-                JSONObject itemEach = (JSONObject) iter.next();
-                String link = (String) itemEach.get("link");
-                String postdate = (String) itemEach.get("postdate");
-                String description = (String) itemEach.get("description");
-                String title = (String) itemEach.get("title");
-                String bloggerlink = (String) itemEach.get("bloggerlink");
-                String bloggername = (String) itemEach.get("bloggername");
-
-                saveList.add( 0, new NaverBlogResultSaveDto( title, postdate, description, link, bloggerlink, bloggername ));
-            }
-        }
-        return saveList;
-    }
-
-    private List<ApiReponse> getTotalResponseResult( String keyword ){
-        List<ApiReponse> responseList = new ArrayList<>();
-        for (int i = 0; i < MAX_CNT; i++) {
-            ApiReponse result = getBlogArticleAndParse( keyword, (1 + (100*i)) );
-            // 요청이 null이 아닌 것들만 데이터베이스에 기록한다.
-            if(result != null) {
-                responseList.add(result);
-            }
-        }
-        return responseList;
-    }
-
-    private ApiReponse getBlogArticleAndParse( String keyword, int startPage ){
-        String url = makeUrl( TYPE_BLOG, keyword, startPage ,TYPE_DATE );
-        String apiResponse = naverSearchApi.search( url );
-        return apiResponseParser(url, apiResponse);
-    }
-
-    // TODO - 카페에서 데이터를 가져와서 저장합니다.
-    public String getCafeArticleAndParse( String keyword, int startPage ) {
-        String url = makeUrl( TYPE_CAFE, keyword, startPage, TYPE_DATE );
-        String apiResponse = naverSearchApi.search(url);
-        return apiResponse;
-    }
-
-    // TODO - 뉴스에서 정보를 조회하여 DB에 저장합니다.
-    public String getNewArticleAndParse( String keyword, int startPage ) {
-        String url = makeUrl( TYPE_NEWS, keyword, startPage, TYPE_DATE );
-        String apiResponse = naverSearchApi.search(url);
-        return apiResponse;
-    }
-
-    private ApiReponse apiResponseParser( String url, String apiResponse ) {
+    private ApiResponseSaveDto apiResponseParser( String url ) {
         JSONParser parser = new JSONParser();
         try {
+            String apiResponse = naverSearchApi.search(url);
             JSONObject object = (JSONObject) parser.parse( apiResponse );
             String lastBuildDateChanel = (String) object.get( "lastBuildDate" );
             Long totalChanel = (Long) object.get( "total" );
             JSONArray item = (JSONArray) object.get( "items" );
-            return new ApiReponse(lastBuildDateChanel, totalChanel, url, item);
+
+            return ApiResponseSaveDto.builder()
+                    .lastBuildDate(lastBuildDateChanel)
+                    .total(totalChanel)
+                    .url(url)
+                    .item(item)
+                    .build();
+
         } catch ( ParseException e ) {
             log.debug( e.getMessage() );
             return null;

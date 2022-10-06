@@ -26,9 +26,8 @@ public class NaverApiScheduler {
 
     @Scheduled( cron = "0 */1 * * * *")
     public void naverApiTest() throws InterruptedException {
-//        naverApiService.getBlogContentsSortByDate("수리남");
-        log.info(naverApiService.getCafeArticleAndParse("수리남",1));
-        log.info(naverApiService.getNewArticleAndParse("수리남",1));
+        naverApiService.getBlogContentsSortByDate("수리남");
+
         Thread.sleep(100);
     }
 }
