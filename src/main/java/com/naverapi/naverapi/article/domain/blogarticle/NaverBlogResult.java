@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@Entity(name = "NBR")
+@Entity(name = "BLOGARTICLE")
 @NoArgsConstructor
 public class NaverBlogResult {
     @Id

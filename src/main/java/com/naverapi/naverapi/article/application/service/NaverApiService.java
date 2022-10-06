@@ -125,14 +125,14 @@ public class NaverApiService {
     public String getCafeArticleAndParse( String keyword, int startPage ) {
         String url = makeUrl( TYPE_CAFE, keyword, startPage, TYPE_DATE );
         String apiResponse = naverSearchApi.search(url);
-        return "";
+        return apiResponse;
     }
 
     // TODO - 뉴스에서 정보를 조회하여 DB에 저장합니다.
     public String getNewArticleAndParse( String keyword, int startPage ) {
         String url = makeUrl( TYPE_NEWS, keyword, startPage, TYPE_DATE );
         String apiResponse = naverSearchApi.search(url);
-        return "";
+        return apiResponse;
     }
 
     private ApiReponse apiResponseParser( String url, String apiResponse ) {
