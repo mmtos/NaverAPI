@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity(name = "BLOGARTICLE")
 @NoArgsConstructor
-public class NaverBlogResult {
+public class NaverBlogDateResult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -39,8 +39,8 @@ public class NaverBlogResult {
     private String md5HahCode;
 
     @Builder
-    public NaverBlogResult(String title, String postdate, String description, String link,
-                           String bloggerlink, String bloggername, String md5HahCode){
+    public NaverBlogDateResult(String title, String postdate, String description, String link,
+                               String bloggerlink, String bloggername, String md5HahCode){
         this.title = title;
         this.postdate = postdate;
         this.description = description;
