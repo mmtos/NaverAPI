@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-
 import static com.naverapi.naverapi.article.component.util.Md5.makeMd5;
 
 @Getter
