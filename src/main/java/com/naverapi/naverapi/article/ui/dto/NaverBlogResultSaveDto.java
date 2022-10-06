@@ -1,10 +1,12 @@
 package com.naverapi.naverapi.article.ui.dto;
 
-import com.naverapi.naverapi.article.domain.NaverBlogResult;
+import com.naverapi.naverapi.article.domain.blogarticle.NaverBlogResult;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import static com.naverapi.naverapi.article.component.util.Md5.makeMd5;
 
 @Getter
 @Setter
@@ -17,6 +19,8 @@ public class NaverBlogResultSaveDto {
     private String bloggerlink;
     private String bloggername;
 
+    private String md5HashCode;
+
     public NaverBlogResult toEntity(){
         return NaverBlogResult.builder()
                 .title(title)
@@ -25,16 +29,33 @@ public class NaverBlogResultSaveDto {
                 .link(link)
                 .bloggerlink(bloggerlink)
                 .bloggername(bloggername)
+                .md5HahCode(md5HashCode)
                 .build();
     }
 
     @Builder
-    public NaverBlogResultSaveDto(String title, String postdate, String description, String link, String bloggerlink, String bloggername) {
+    public NaverBlogResultSaveDto(String title, String postdate, String description,
+                                  String link, String bloggerlink, String bloggername) {
         this.title = title;
         this.postdate = postdate;
         this.description = description;
         this.link = link;
         this.bloggerlink = bloggerlink;
         this.bloggername = bloggername;
+        this.md5HashCode = makeMd5(title+postdate+description+link+bloggerlink+bloggername );
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if( !(o instanceof NaverBlogResultSaveDto) ) return false;
+
+        NaverBlogResultSaveDto obj = (NaverBlogResultSaveDto) o;
+        return (this.title == obj.title && this.postdate == obj.postdate && this.description == obj.description &&
+                this.link == obj.link && this.bloggerlink == obj.bloggerlink && this.bloggername == obj.bloggerlink );
+    }
+
+    @Override
+    public int hashCode() {
+        return (title+postdate+description+link+bloggerlink+bloggername).hashCode();
     }
 }

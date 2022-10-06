@@ -10,29 +10,33 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.json.simple.JSONArray;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity(name = "apirequest")
-public class ApiRequest extends BaseTimeEntity {
+public class ApiReponse extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 256, nullable = false)
+    @Column(length = 256, nullable = true)
     private String lastBuildDate;
 
-    @Column(length = 256, nullable = false)
+    @Column(length = 256, nullable = true)
     private Long total;
 
-    @Column(length = 1024, nullable = false)
-    private String url;
+    @Column(length = 1024, nullable = true)
+    private String requestUrl;
+
+    private JSONArray itemList;
 
     @Builder
-    public ApiRequest(String lastBuildDate, Long total, String url) {
+    public ApiReponse(String lastBuildDate, Long total, String requestUrl, JSONArray itemList) {
         this.lastBuildDate = lastBuildDate;
         this.total = total;
-        this.url = url;
+        this.requestUrl = requestUrl;
+        this.itemList = itemList;
     }
 }

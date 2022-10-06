@@ -24,11 +24,9 @@ public class NaverApiScheduler {
     @Autowired
     NotificationService notificationService;
 
-    @Async
     @Scheduled( cron = "0 */1 * * * *")
     public void naverApiTest() throws InterruptedException {
-        String result = naverApiService.getBlogContentsSortByExac("강릉여행");
-        log.info(result);
+        naverApiService.getBlogContentsSortByDate("수리남");
         Thread.sleep(100);
     }
 }
