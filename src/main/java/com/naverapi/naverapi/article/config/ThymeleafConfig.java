@@ -21,10 +21,11 @@ public class ThymeleafConfig {
     public SpringResourceTemplateResolver springResourceTemplateResolver() {
         SpringResourceTemplateResolver springResourceTemplateResolver = new SpringResourceTemplateResolver();
         springResourceTemplateResolver.setOrder(1);
-        springResourceTemplateResolver.setPrefix("classpath:/");
+        springResourceTemplateResolver.setPrefix("classpath:/templates/");
         springResourceTemplateResolver.setSuffix(".html");
         springResourceTemplateResolver.setTemplateMode(TemplateMode.HTML);
         springResourceTemplateResolver.setCharacterEncoding("UTF-8");
+        //setCacheable의 경우 운영 배포시에 true로 바꾸기. 개발과정에서 템플릿 변경시 auto reload를 위해 false로 지정
         springResourceTemplateResolver.setCacheable(false);
 
         return springResourceTemplateResolver;
