@@ -7,24 +7,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity(name = "keyword")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class KeyWord extends BaseTimeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 256, nullable = false)
-    private String name;
+    private String keyword;
 
-    @Builder
-    public KeyWord(String name) {
-        this.name = name;
+    @Column(length = 256, nullable = false)
+    private Long userId;
+
+    public KeyWord(String keyword, Long userId) {
+        this.keyword = keyword;
+        this.userId = userId;
     }
 }

@@ -16,7 +16,8 @@
                 <br/>
                 <img th:src="${user.picture}"/>
                 <br/>
-                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+            <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+            <a href="/keyword/view/add" class="btn btn-info active" role="button">키워드 등록하러가기</a>
         </div>
         <div th:unless="${user}" class="col-md-6">
             <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
