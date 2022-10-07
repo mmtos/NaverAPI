@@ -14,9 +14,20 @@ public class NotificationServiceTest {
 
     @Test
     void test1(){
-        notificationService.sendNotificationByEmail(User.builder()
-                .name("jsh")
-                .email("jss223kr@gmail.com")
-                .build());
+
+        for (int i = 0; i < 3; i++) {
+            long startTime = System.currentTimeMillis();
+
+            String result = notificationService.sendNotificationByEmail(User.builder()
+                    .name("Terry" + String.valueOf(i))
+                    .email("terryakishin0814@gmail.com")
+                    .build());
+
+            long finishTime = System.currentTimeMillis();
+            long elapsedTime = finishTime - startTime;
+            System.out.println(result);
+            System.out.println(elapsedTime);
+        }
+
     }
 }
