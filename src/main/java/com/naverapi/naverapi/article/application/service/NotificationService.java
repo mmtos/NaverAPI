@@ -5,7 +5,6 @@ import com.naverapi.naverapi.article.domain.email.Email;
 import com.naverapi.naverapi.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -18,7 +17,6 @@ public class NotificationService {
     private final TemplateEngine templateEngine;
     private final MailSenderByGoogle mailSenderByGoogle;
 
-
     public String sendNotificationByEmail( User user ) {
 
         Context context = getContext( user.getName() );
@@ -30,6 +28,7 @@ public class NotificationService {
                                         .message(message)
                                         .build()   );
     }
+
 
     private Context getContext( String name ) {
         Context context = new Context();
