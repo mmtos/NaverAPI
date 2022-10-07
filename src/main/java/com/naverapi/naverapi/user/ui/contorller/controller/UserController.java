@@ -1,4 +1,4 @@
-package com.naverapi.naverapi.user.ui.contorller;
+package com.naverapi.naverapi.user.ui.contorller.controller;
 
 import com.naverapi.naverapi.user.infra.SessionUser;
 import javax.servlet.http.HttpSession;
