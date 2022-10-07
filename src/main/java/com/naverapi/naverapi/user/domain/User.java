@@ -1,16 +1,16 @@
 package com.naverapi.naverapi.user.domain;
 
+import com.naverapi.naverapi.article.domain.email.Email;
 import com.naverapi.naverapi.common.BaseTimeEntity;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -32,6 +32,14 @@ public class User extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Email> emailList = new ArrayList<>();
+
+    public void addEmail(Email email) {
+        emailList.add(email);
+        email.setUser(this);
+    }
 
     @Builder
     public User(String name, String email, String picture, Role role){
