@@ -1,5 +1,8 @@
 package com.naverapi.naverapi.article.component.schedule;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import com.naverapi.naverapi.article.application.service.NaverApiService;
 import com.naverapi.naverapi.article.application.service.NotificationService;
 import com.naverapi.naverapi.article.application.service.event.EmailEventWorker;
@@ -57,14 +60,13 @@ public class NaverApiScheduler {
     }
 
     @Scheduled( cron = "0 */1 * * * *")
-    public void getAllUserTest() throws InterruptedException {
+    public void getAllUserTest() throws InterruptedException, JsonProcessingException {
         List<UserResponseDto> userResponseDtoList = userService.findAllDesc();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new Hibernate5Module());
 
         for ( UserResponseDto dto : userResponseDtoList) {
-            log.info(String.valueOf(dto.getId()) + dto.getName() + dto.getEmail());
-            for(Email email : dto.getEmailList() ) {
-                log.info(email.getTitle());
-            }
+            log.info(mapper.writeValueAsString(dto));
         }
     }
 
