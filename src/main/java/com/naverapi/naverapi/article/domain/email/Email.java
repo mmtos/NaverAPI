@@ -26,7 +26,7 @@ public class Email {
     @Column(length = 4096, nullable = false)
     private String message;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "GL_USER_ID")
     private User user;
 

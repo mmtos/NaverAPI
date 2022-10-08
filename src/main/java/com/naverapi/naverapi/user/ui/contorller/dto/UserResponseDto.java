@@ -20,6 +20,15 @@ public class UserResponseDto {
     private Role role;
     private List<Email> emailList;
 
+    public User toEntity(){
+        return User.builder()
+                .name(name)
+                .email(email)
+                .picture(picture)
+                .role(role)
+                .build();
+    }
+
     @Builder
     public UserResponseDto(User user) {
         this.id = user.getId();

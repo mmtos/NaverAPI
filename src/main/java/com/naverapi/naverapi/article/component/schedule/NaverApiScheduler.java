@@ -7,10 +7,7 @@ import com.naverapi.naverapi.article.application.service.NaverApiService;
 import com.naverapi.naverapi.article.application.service.NotificationService;
 import com.naverapi.naverapi.article.application.service.event.EmailEventWorker;
 import com.naverapi.naverapi.article.component.event.EventPublisher;
-import com.naverapi.naverapi.article.domain.email.Email;
-import com.naverapi.naverapi.article.domain.email.EmailEvent;
-import com.naverapi.naverapi.article.domain.email.EmailRepository;
-import com.naverapi.naverapi.article.domain.email.EmailType;
+import com.naverapi.naverapi.article.domain.email.*;
 import com.naverapi.naverapi.article.domain.event.EmailEventQueue;
 import com.naverapi.naverapi.keyword.application.KeywordService;
 import com.naverapi.naverapi.keyword.domain.KeyWord;
@@ -38,8 +35,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NaverApiScheduler {
 
-//    @Autowired
-//    NaverApiService naverApiService;
+    @Autowired
+    NaverApiService naverApiService;
 
     @Autowired
     private EventPublisher publisher;
@@ -61,13 +58,31 @@ public class NaverApiScheduler {
 
     @Scheduled( cron = "0 */1 * * * *")
     public void getAllUserTest() throws InterruptedException, JsonProcessingException {
-        List<UserResponseDto> userResponseDtoList = userService.findAllDesc();
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new Hibernate5Module());
-
+        // 모든 유저를 조회한다.
+        List<UserResponseDto> userResponseDtoList = userService.findAllDesc();
         for ( UserResponseDto dto : userResponseDtoList) {
             log.info(mapper.writeValueAsString(dto));
+
+            Email email = Email.builder()
+                            .address(dto.getEmail())
+                            .title("test")
+                            .message("테스트입니다.")
+                            .build();
+            User testUser = dto.toEntity();
+            testUser.addEmail(email);
+            email.setUser(testUser);
+
+            publisher.publish(EmailEvent.of(EmailStatus.STANDBY, EmailType.BLOG, "test", email));
         }
+        // 조회가 필요한 키워드 set을 만든다.
+        List<KeyWord>  keyList = keyWordRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+        // 해당 키워드로 api 조회를 완료한다. -> 조회의 결과를 return 받는 것이 아니라,  조회 결과는 DB에 저장이 된다.
+        for ( KeyWord key : keyList) {
+            naverApiService.getBlogContentsSortByDate(key.getKeyword());
+        }
+        // 조회한 결과를 email로 발송한다.
     }
 
     @Scheduled(fixedRate = 100)
