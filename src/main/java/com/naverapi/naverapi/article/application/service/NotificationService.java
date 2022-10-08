@@ -17,17 +17,18 @@ public class NotificationService {
     private final TemplateEngine templateEngine;
     private final MailSenderByGoogle mailSenderByGoogle;
 
-    public void sendNotificationByEmail( User user ) {
+    public String sendNotificationByEmail( User user ) {
 
         Context context = getContext( user.getName() );
         String message = templateEngine.process(EXAMPLE_LINK_TEMPLATE, context);
 
-        mailSenderByGoogle.sendMailHtml(   Email.builder()
+        return mailSenderByGoogle.sendMailHtml(   Email.builder()
                                         .address(user.getEmail())
                                         .title("test")
                                         .message(message)
                                         .build()   );
     }
+
 
     private Context getContext( String name ) {
         Context context = new Context();
