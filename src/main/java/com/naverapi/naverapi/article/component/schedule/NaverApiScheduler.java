@@ -9,6 +9,10 @@ import com.naverapi.naverapi.article.domain.email.EmailEvent;
 import com.naverapi.naverapi.article.domain.email.EmailRepository;
 import com.naverapi.naverapi.article.domain.email.EmailType;
 import com.naverapi.naverapi.article.domain.event.EmailEventQueue;
+import com.naverapi.naverapi.keyword.application.KeywordService;
+import com.naverapi.naverapi.keyword.domain.KeyWord;
+import com.naverapi.naverapi.keyword.domain.KeyWordRepository;
+import com.naverapi.naverapi.keyword.ui.dto.KeyWordResponseDto;
 import com.naverapi.naverapi.user.application.service.UserService;
 import com.naverapi.naverapi.user.domain.Role;
 import com.naverapi.naverapi.user.domain.User;
@@ -18,6 +22,7 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -40,6 +45,16 @@ public class NaverApiScheduler {
     private final NotificationService notificationService;
 
     private final UserService userService;
+
+    private final KeyWordRepository keyWordRepository;
+
+    @Scheduled( cron = "0 */1 * * * *")
+    public void NaverApiScheduler() throws InterruptedException {
+//        List<KeyWord>  list = keyWordRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+//        for ( KeyWord key : list) {
+//            log.info(key.getKeyword() + String.valueOf(key.getUserId()));
+//        }
+    }
 
     @Scheduled( cron = "0 */1 * * * *")
     public void getAllUserTest() throws InterruptedException {
