@@ -9,6 +9,7 @@ import com.naverapi.naverapi.article.application.service.event.EmailEventWorker;
 import com.naverapi.naverapi.article.component.event.EventPublisher;
 import com.naverapi.naverapi.article.domain.email.*;
 import com.naverapi.naverapi.article.domain.event.EmailEventQueue;
+import com.naverapi.naverapi.keyword.domain.KeyWord;
 import com.naverapi.naverapi.keyword.domain.KeyWordRepository;
 import com.naverapi.naverapi.user.application.service.UserService;
 import com.naverapi.naverapi.user.domain.User;
@@ -19,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 @Slf4j
@@ -38,6 +41,24 @@ public class NaverApiScheduler {
     private final UserService userService;
 
     private final KeyWordRepository keyWordRepository;
+
+    @Scheduled( cron = "0 */5 * * * *")
+    public void getAllKeyAndUpdateBlog() throws JsonProcessingException {
+
+        List<UserResponseDto> userResponseDtoList = userService.findAllDesc();
+        HashSet<KeyWord> keyWordHashSet = new HashSet<>();
+
+        for ( UserResponseDto dto : userResponseDtoList ) {
+            List<KeyWord> keyWordList = keyWordRepository.findByUserId(dto.getId());
+            keyWordHashSet.addAll(keyWordList);
+        }
+
+        Iterator<KeyWord> iter = keyWordHashSet.iterator();
+        while(iter.hasNext()) {
+            KeyWord key = iter.next();
+            naverApiService.getBlogContentsSortByDate(key.getKeyword());
+        }
+    }
 
     @Scheduled( cron = "0 */1 * * * *")
     public void getAllUserAndSendEmail() throws InterruptedException, JsonProcessingException {
