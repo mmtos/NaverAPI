@@ -1,4 +1,4 @@
-package com.naverapi.naverapi.article.domain.apirequest;
+package com.naverapi.naverapi.article.domain.apireponse;
 
 import com.naverapi.naverapi.common.BaseTimeEntity;
 import javax.persistence.Column;
@@ -10,7 +10,6 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.json.simple.JSONArray;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -30,13 +29,10 @@ public class ApiReponse extends BaseTimeEntity {
     @Column(length = 1024, nullable = true)
     private String requestUrl;
 
-    private JSONArray itemList;
-
     @Builder
-    public ApiReponse(String lastBuildDate, Long total, String requestUrl, JSONArray itemList) {
+    public ApiReponse(String lastBuildDate, Long total, String requestUrl) {
         this.lastBuildDate = lastBuildDate;
         this.total = total;
         this.requestUrl = requestUrl;
-        this.itemList = itemList;
     }
 }

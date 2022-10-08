@@ -61,6 +61,7 @@ public class NaverApiScheduler {
     }
 
     @Scheduled( cron = "0 */1 * * * *")
+
     public void getAllUserAndSendEmail() throws InterruptedException, JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new Hibernate5Module());
@@ -80,6 +81,7 @@ public class NaverApiScheduler {
             // 이메일 이벤트 생성
             publisher.publish(EmailEvent.of(EmailStatus.STANDBY, EmailType.BLOG, "test", email));
         }
+
     }
 
     @Scheduled(fixedRate = 100)
