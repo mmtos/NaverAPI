@@ -18,7 +18,6 @@ public class UserResponseDto {
     private String email;
     private String picture;
     private Role role;
-    private List<Email> emailList;
 
     public User toEntity(){
         return User.builder()
@@ -36,7 +35,6 @@ public class UserResponseDto {
         this.email = user.getEmail();
         this.picture = user.getPicture();
         this.role = user.getRole();
-        this.emailList = user.getEmailList();
     }
 
     private String toStringDateTime(LocalDateTime localDateTime){

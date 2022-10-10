@@ -34,14 +34,6 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false)
     private Role role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-    private List<Email> emailList = new ArrayList<>();
-
-    public void addEmail(Email email) {
-        emailList.add(email);
-        email.setUser(this);
-    }
-
     @Builder
     public User(String name, String email, String picture, Role role){
         this.name = name;

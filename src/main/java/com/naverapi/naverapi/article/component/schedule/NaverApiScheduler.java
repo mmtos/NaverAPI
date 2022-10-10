@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import com.naverapi.naverapi.article.application.service.NaverApiService;
 import com.naverapi.naverapi.article.application.service.NotificationService;
+import com.naverapi.naverapi.article.application.service.email.EmailService;
 import com.naverapi.naverapi.article.application.service.event.EmailEventWorker;
 import com.naverapi.naverapi.article.component.event.EventPublisher;
 import com.naverapi.naverapi.article.domain.email.*;
@@ -35,9 +36,8 @@ public class NaverApiScheduler {
     @Autowired
     private EventPublisher publisher;
     private final EmailEventQueue eventQueue;
-    private final EmailRepository emailRepository;
+    private final EmailService emailService;
     private final NotificationService notificationService;
-
     private final UserService userService;
 
     private final KeyWordRepository keyWordRepository;
@@ -77,9 +77,6 @@ public class NaverApiScheduler {
                             .title("test")
                             .message("테스트입니다.")
                             .build();
-            User testUser = dto.toEntity();
-            testUser.addEmail(email);
-            email.setUser(testUser);
             // 이메일 이벤트 생성
             publisher.publish(EmailEvent.of(EmailStatus.STANDBY, EmailType.BLOG, "test", email));
         }
@@ -88,7 +85,7 @@ public class NaverApiScheduler {
 
     @Scheduled(fixedRate = 100)
     public void schedule() {
-        new EmailEventWorker( eventQueue, emailRepository, notificationService )
+        new EmailEventWorker( eventQueue, emailService, userService, notificationService )
                 .run();
     }
 
