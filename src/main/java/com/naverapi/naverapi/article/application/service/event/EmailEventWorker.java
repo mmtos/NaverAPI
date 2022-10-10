@@ -1,6 +1,6 @@
 package com.naverapi.naverapi.article.application.service.event;
 
-import com.naverapi.naverapi.article.application.service.NotificationService;
+import com.naverapi.naverapi.article.application.service.notification.NotificationService;
 import com.naverapi.naverapi.article.application.service.email.EmailService;
 import com.naverapi.naverapi.article.domain.email.Email;
 import com.naverapi.naverapi.article.domain.email.EmailEvent;
@@ -48,6 +48,7 @@ public class EmailEventWorker implements Runnable{
                             .message(emailNeedToSend.getMessage())
                             .result(result)
                             .build() );
+
             emailEvent.updateStatus(EmailStatus.SUCCESS);
             // 성공
             log.info( email.getTitle() + " " + email.getAddress() + " " + email.getMessage() );

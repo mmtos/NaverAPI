@@ -3,8 +3,8 @@ package com.naverapi.naverapi.article.component.schedule;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
-import com.naverapi.naverapi.article.application.service.NaverApiService;
-import com.naverapi.naverapi.article.application.service.NotificationService;
+import com.naverapi.naverapi.article.application.service.apirequest.NaverApiRequestService;
+import com.naverapi.naverapi.article.application.service.notification.NotificationService;
 import com.naverapi.naverapi.article.application.service.email.EmailService;
 import com.naverapi.naverapi.article.application.service.event.EmailEventWorker;
 import com.naverapi.naverapi.article.component.event.EventPublisher;
@@ -13,7 +13,6 @@ import com.naverapi.naverapi.article.domain.event.EmailEventQueue;
 import com.naverapi.naverapi.keyword.domain.KeyWord;
 import com.naverapi.naverapi.keyword.domain.KeyWordRepository;
 import com.naverapi.naverapi.user.application.service.UserService;
-import com.naverapi.naverapi.user.domain.User;
 import com.naverapi.naverapi.user.ui.contorller.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +30,7 @@ import java.util.List;
 public class NaverApiScheduler {
 
     @Autowired
-    NaverApiService naverApiService;
+    NaverApiRequestService naverApiRequestService;
 
     @Autowired
     private EventPublisher publisher;
@@ -56,9 +55,9 @@ public class NaverApiScheduler {
         Iterator<KeyWord> iter = keyWordHashSet.iterator();
         while(iter.hasNext()) {
             KeyWord key = iter.next();
-            naverApiService.getBlogContentsSortByDate(key.getKeyword());
-            naverApiService.getCafeContentsSortByDate(key.getKeyword());
-            naverApiService.getNewsContentsSortByDate(key.getKeyword());
+            naverApiRequestService.getBlogContentsSortByDate(key.getKeyword());
+            naverApiRequestService.getCafeContentsSortByDate(key.getKeyword());
+            naverApiRequestService.getNewsContentsSortByDate(key.getKeyword());
         }
     }
 

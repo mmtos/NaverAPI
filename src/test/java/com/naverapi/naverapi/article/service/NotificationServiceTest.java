@@ -1,16 +1,11 @@
 package com.naverapi.naverapi.article.service;
 
-import com.naverapi.naverapi.article.application.service.NotificationService;
+import com.naverapi.naverapi.article.application.service.notification.NotificationService;
 import com.naverapi.naverapi.article.component.event.EventPublisher;
-import com.naverapi.naverapi.article.domain.email.Email;
-import com.naverapi.naverapi.article.domain.email.EmailEvent;
-import com.naverapi.naverapi.article.domain.email.EmailType;
 import com.naverapi.naverapi.user.domain.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.concurrent.CompletableFuture;
 
 @SpringBootTest
 public class NotificationServiceTest {

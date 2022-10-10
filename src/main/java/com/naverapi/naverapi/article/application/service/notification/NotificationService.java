@@ -1,4 +1,4 @@
-package com.naverapi.naverapi.article.application.service;
+package com.naverapi.naverapi.article.application.service.notification;
 
 import com.naverapi.naverapi.article.component.email.MailSenderByGoogle;
 import com.naverapi.naverapi.article.domain.email.Email;

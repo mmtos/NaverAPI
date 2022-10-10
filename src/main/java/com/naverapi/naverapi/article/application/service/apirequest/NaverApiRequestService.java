@@ -1,4 +1,4 @@
-package com.naverapi.naverapi.article.application.service;
+package com.naverapi.naverapi.article.application.service.apirequest;
 
 import com.naverapi.naverapi.article.component.api.NaverSearchApi;
 import com.naverapi.naverapi.article.domain.apireponse.ApiReponseRepository;
@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 @Service
 @Slf4j
-public class NaverApiService {
+public class NaverApiRequestService {
     private final static int MAX_CNT = 10;
     private final static int TYPE_BLOG = 1;
     private final static int TYPE_NEWS = 2;
