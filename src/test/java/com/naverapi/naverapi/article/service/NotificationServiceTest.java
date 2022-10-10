@@ -39,27 +39,4 @@ public class NotificationServiceTest {
         }
 
     }
-
-    @Test
-    void test2() {
-
-
-        User u = User.builder()
-                .name("Terry")
-                .email("terryakishin0814@gmail.com")
-                .build();
-
-        Email e = Email.builder()
-                .address(u.getEmail())
-                .title("test proc ")
-                .message(" 테스트  거등여 ")
-                .build();
-
-        u.addEmail(e);
-        e.setUser(u);
-
-        EmailEvent event = EmailEvent.create(EmailType.BLOG, "test", e);
-
-        publisher.publish(event);
-    }
 }
