@@ -24,6 +24,8 @@ public class NaverNewsResultSaveDto {
 
     private String md5HahCode;
 
+    private String keyword;
+
     public NaverNewsResult toEntity() {
         return NaverNewsResult.builder()
                 .title(title)
@@ -32,16 +34,19 @@ public class NaverNewsResultSaveDto {
                 .description(description)
                 .pubDate(pubDate)
                 .md5HahCode(md5HahCode)
+                .keyword(keyword)
                 .build();
     }
 
     @Builder
-    public NaverNewsResultSaveDto(String title, String originallink, String link, String description, String pubDate) {
+    public NaverNewsResultSaveDto(String title, String originallink, String link, String description,
+                                  String pubDate, String keyword) {
         this.title = title;
         this.originallink = originallink;
         this.link = link;
         this.description = description;
         this.pubDate = pubDate;
+        this.keyword = keyword;
         this.md5HahCode = makeMd5(title+originallink+link+description+pubDate);
     }
 
@@ -52,12 +57,12 @@ public class NaverNewsResultSaveDto {
         NaverNewsResultSaveDto obj = (NaverNewsResultSaveDto) o;
 
         return (this.title == obj.title && this.originallink == obj.originallink && this.link == obj.link &&
-                this.description == obj.description && this.pubDate == obj.pubDate );
+                this.description == obj.description && this.pubDate == obj.pubDate && this.keyword == obj.keyword );
     }
 
     @Override
     public int hashCode() {
-        return (title+originallink+link+description+pubDate).hashCode();
+        return (title+originallink+link+description+pubDate+keyword).hashCode();
     }
 
 }

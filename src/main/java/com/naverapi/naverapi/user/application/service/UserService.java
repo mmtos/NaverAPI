@@ -20,4 +20,11 @@ public class UserService {
                              .map(UserResponseDto::new)
                              .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public UserResponseDto findUserByEmail(String email){
+        return UserResponseDto.builder()
+                .user(userRepository.findByEmail(email).get())
+                .build();
+    }
 }

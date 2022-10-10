@@ -33,14 +33,18 @@ public class NaverCafeResult {
     @Column(length = 1024, nullable = false)
     private String md5HahCode;
 
+    @Column(length = 256, nullable = false)
+    private String keyword;
+
     @Builder
     public NaverCafeResult(String title, String link, String description, String cafeName,
-                           String cafeUrl, String md5HahCode){
+                           String cafeUrl, String md5HahCode, String keyword){
         this.title = title;
         this.link = link;
         this.description = description;
         this.cafeName = cafeName;
         this.cafeUrl = cafeUrl;
         this.md5HahCode = md5HahCode;
+        this.keyword = keyword;
     }
 }

@@ -12,9 +12,7 @@ import org.json.simple.JSONArray;
 @NoArgsConstructor
 public class ApiResponseSaveDto {
 
-    private String title;
-
-    private String description;
+    private String keyword;
 
     private String lastBuildDate;
 
@@ -26,6 +24,7 @@ public class ApiResponseSaveDto {
 
     public ApiReponse toEntity(){
         return ApiReponse.builder()
+                .keyword(keyword)
                 .lastBuildDate(lastBuildDate)
                 .total(total)
                 .requestUrl(url)
@@ -33,7 +32,8 @@ public class ApiResponseSaveDto {
     }
 
     @Builder
-    public ApiResponseSaveDto(String lastBuildDate, Long total, String url, JSONArray item) {
+    public ApiResponseSaveDto( String keyword, String lastBuildDate, Long total, String url, JSONArray item) {
+        this.keyword = keyword;
         this.lastBuildDate = lastBuildDate;
         this.total = total;
         this.url = url;

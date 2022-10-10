@@ -26,22 +26,14 @@ public class Email {
     @Column(length = 4096, nullable = false)
     private String message;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "GL_USER_ID")
-    private User user;
-
-    public void setUser(User user) {
-        if(this.user != null ){
-            this.user.getEmailList().remove(this);
-        }
-        this.user = user;
-        user.getEmailList().add(this);
-    }
+    @Column(length = 4096, nullable = false)
+    private String result;
 
     @Builder
-    public Email(String address, String title, String message){
+    public Email(String address, String title, String message, String result){
         this.address = address;
         this.title = title;
         this.message = message;
+        this.result = result;
     }
 }
