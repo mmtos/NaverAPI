@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import java.util.concurrent.CompletableFuture;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -17,16 +19,15 @@ public class NotificationService {
     private final TemplateEngine templateEngine;
     private final MailSenderByGoogle mailSenderByGoogle;
 
-    public String sendNotificationByEmail( User user ) {
-
+    public CompletableFuture<String> sendNotificationByEmail(User user ) {
         Context context = getContext( user.getName() );
         String message = templateEngine.process(EXAMPLE_LINK_TEMPLATE, context);
-
-        return mailSenderByGoogle.sendMailHtml(   Email.builder()
-                                        .address(user.getEmail())
-                                        .title("test")
-                                        .message(message)
-                                        .build()   );
+        String result =  mailSenderByGoogle.sendMailHtml(   Email.builder()
+                .address(user.getEmail())
+                .title("test")
+                .message(message)
+                .build()   );
+        return CompletableFuture.completedFuture(result);
     }
 
 
