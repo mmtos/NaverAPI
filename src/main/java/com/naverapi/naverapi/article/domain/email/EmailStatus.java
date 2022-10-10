@@ -5,6 +5,7 @@ public enum EmailStatus {
     QUEUE_WAIT,
     QUEUE,
     PROGRESS,
+    SEND,
     SUCCESS,
     FAILURE
 }
