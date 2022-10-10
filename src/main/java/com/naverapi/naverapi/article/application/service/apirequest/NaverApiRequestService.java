@@ -43,14 +43,13 @@ public class NaverApiRequestService {
     private ApiReponseRepository apiReponseRepository;
     private NaverSearchApi naverSearchApi;
 
-
-
     @Transactional
     public int getBlogContentsSortByDate( String keyword ) {
         // api 요청 로직 ( api 요청은 비동기입니다. )
         List<ApiResponseSaveDto> responseList = getTotalResponseResult(keyword, TYPE_BLOG, TYPE_DATE);
         // 블로그 콘텐츠 관련 목록
         List<NaverBlogResultSaveDto> saveDtoList = getSaveBlogArticleList(responseList);
+
         // 저장 로직
         for ( NaverBlogResultSaveDto dto : saveDtoList) {
             naverBlogResultRepository.save(dto.toEntity());

@@ -1,14 +1,11 @@
 package com.naverapi.naverapi.article.component.schedule;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import com.naverapi.naverapi.article.application.service.apirequest.NaverApiRequestService;
 import com.naverapi.naverapi.article.application.service.notification.NotificationService;
 import com.naverapi.naverapi.article.application.service.email.EmailService;
 import com.naverapi.naverapi.article.application.service.event.EmailEventWorker;
 import com.naverapi.naverapi.article.component.event.EventPublisher;
-import com.naverapi.naverapi.article.domain.email.*;
 import com.naverapi.naverapi.article.domain.event.EmailEventQueue;
 import com.naverapi.naverapi.keyword.domain.KeyWord;
 import com.naverapi.naverapi.keyword.domain.KeyWordRepository;
@@ -41,7 +38,7 @@ public class NaverApiScheduler {
 
     private final KeyWordRepository keyWordRepository;
 
-    @Scheduled( cron = "0 */5 * * * *")
+    @Scheduled( cron = "0 */1 * * * *")
     public void getAllKeyAndUpdateBlog() throws JsonProcessingException {
 
         List<UserResponseDto> userResponseDtoList = userService.findAllDesc();
@@ -56,29 +53,29 @@ public class NaverApiScheduler {
         while(iter.hasNext()) {
             KeyWord key = iter.next();
             naverApiRequestService.getBlogContentsSortByDate(key.getKeyword());
-            naverApiRequestService.getCafeContentsSortByDate(key.getKeyword());
-            naverApiRequestService.getNewsContentsSortByDate(key.getKeyword());
+//            naverApiRequestService.getCafeContentsSortByDate(key.getKeyword());
+//            naverApiRequestService.getNewsContentsSortByDate(key.getKeyword());
         }
     }
 
     @Scheduled( cron = "0 */1 * * * *")
 
     public void getAllUserAndSendEmail() throws InterruptedException, JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new Hibernate5Module());
-        // 모든 유저를 조회한다.
-        List<UserResponseDto> userResponseDtoList = userService.findAllDesc();
-        for ( UserResponseDto dto : userResponseDtoList) {
-            log.info(mapper.writeValueAsString(dto));
-            // 해당 유저 이메일 보낸다.
-            Email email = Email.builder()
-                            .address(dto.getEmail())
-                            .title("test")
-                            .message("테스트입니다.")
-                            .build();
-            // 이메일 이벤트 생성
-            publisher.publish(EmailEvent.of(EmailStatus.STANDBY, EmailType.BLOG, "test", email));
-        }
+//        ObjectMapper mapper = new ObjectMapper();
+//        mapper.registerModule(new Hibernate5Module());
+//        // 모든 유저를 조회한다.
+//        List<UserResponseDto> userResponseDtoList = userService.findAllDesc();
+//        for ( UserResponseDto dto : userResponseDtoList) {
+//            log.info(mapper.writeValueAsString(dto));
+//            // 해당 유저 이메일 보낸다.
+//            Email email = Email.builder()
+//                            .address(dto.getEmail())
+//                            .title("test")
+//                            .message("테스트입니다.")
+//                            .build();
+//            // 이메일 이벤트 생성
+//            publisher.publish(EmailEvent.of(EmailStatus.STANDBY, EmailType.BLOG, "test", email));
+//        }
 
     }
 

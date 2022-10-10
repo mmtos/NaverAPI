@@ -54,9 +54,9 @@ public class NaverBlogResultSaveDto {
         if( !(o instanceof NaverBlogResultSaveDto) ) return false;
 
         NaverBlogResultSaveDto obj = (NaverBlogResultSaveDto) o;
-        return (this.title == obj.title && this.postdate == obj.postdate && this.description == obj.description &&
-                this.link == obj.link && this.bloggerlink == obj.bloggerlink && this.bloggername == obj.bloggerlink &&
-                this.keyword == obj.keyword );
+        return (this.title.equals(obj.title) && this.postdate.equals(obj.postdate) && this.description.equals(obj.description) &&
+                this.link.equals(obj.link) && this.bloggerlink.equals(obj.bloggerlink) && this.bloggername.equals( obj.bloggerlink ) &&
+                this.keyword.equals(obj.keyword) );
     }
 
     @Override

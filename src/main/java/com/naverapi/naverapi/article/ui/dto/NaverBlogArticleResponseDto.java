@@ -52,4 +52,20 @@ public class NaverBlogArticleResponseDto {
         this.md5HahCode = md5HahCode;
         this.keyword = keyword;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if( !(o instanceof NaverBlogArticleResponseDto)) return false;
+
+        NaverBlogArticleResponseDto obj = (NaverBlogArticleResponseDto) o;
+        return ( this.title.equals(obj.title) && this.postdate.equals(obj.postdate) && this.description.equals(description) &&
+                this.link.equals(obj.link) && this.bloggerlink.equals(obj.bloggerlink) && this.bloggername.equals(obj.bloggername)
+                && this.md5HahCode.equals(obj.md5HahCode) && this.keyword.equals(keyword));
+    }
+
+
+    @Override
+    public int hashCode() {
+        return (title+postdate+description+link+bloggerlink+bloggername+md5HahCode+keyword).hashCode();
+    }
 }

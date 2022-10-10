@@ -1,6 +1,5 @@
 package com.naverapi.naverapi.user.application.service;
 
-import com.naverapi.naverapi.user.domain.User;
 import com.naverapi.naverapi.user.domain.UserRepository;
 import com.naverapi.naverapi.user.ui.contorller.dto.UserResponseDto;
 import lombok.AllArgsConstructor;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
