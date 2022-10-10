@@ -25,6 +25,8 @@ public class NaverCafeResultSaveDto {
 
     private String md5HahCode;
 
+    private String keyword;
+
     public NaverCafeResult toEntity(){
         return NaverCafeResult.builder()
                 .title(title)
@@ -33,16 +35,18 @@ public class NaverCafeResultSaveDto {
                 .cafeName(cafeName)
                 .cafeUrl(cafeUrl)
                 .md5HahCode(md5HahCode)
+                .keyword(keyword)
                 .build();
     }
 
     @Builder
-    public NaverCafeResultSaveDto(String title, String link, String description, String cafeName, String cafeUrl) {
+    public NaverCafeResultSaveDto(String title, String link, String description, String cafeName, String cafeUrl, String keyword) {
         this.title = title;
         this.link = link;
         this.description = description;
         this.cafeName = cafeName;
         this.cafeUrl = cafeUrl;
+        this.keyword = keyword;
         this.md5HahCode = makeMd5(title+link+description+cafeName+cafeUrl);
     }
 
@@ -53,11 +57,11 @@ public class NaverCafeResultSaveDto {
         NaverCafeResultSaveDto obj = (NaverCafeResultSaveDto) o;
 
         return (this.title == obj.title && this.link == obj.link && this.description == obj.description &&
-                this.cafeName == obj.cafeName && this.cafeUrl == obj.cafeUrl );
+                this.cafeName == obj.cafeName && this.cafeUrl == obj.cafeUrl && this.keyword == obj.keyword );
     }
 
     @Override
     public int hashCode() {
-        return (title+link+description+cafeName+cafeUrl).hashCode();
+        return (title+link+description+cafeName+cafeUrl+keyword).hashCode();
     }
 }

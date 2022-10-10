@@ -38,9 +38,12 @@ public class NaverBlogDateResult {
     @Column(length = 1024, nullable = false)
     private String md5HahCode;
 
+    @Column(length = 256, nullable = false)
+    private String keyword;
+
     @Builder
     public NaverBlogDateResult(String title, String postdate, String description, String link,
-                               String bloggerlink, String bloggername, String md5HahCode){
+                               String bloggerlink, String bloggername, String md5HahCode, String keyword){
         this.title = title;
         this.postdate = postdate;
         this.description = description;
@@ -48,5 +51,6 @@ public class NaverBlogDateResult {
         this.bloggerlink = bloggerlink;
         this.bloggername = bloggername;
         this.md5HahCode = md5HahCode;
+        this.keyword = keyword;
     }
 }

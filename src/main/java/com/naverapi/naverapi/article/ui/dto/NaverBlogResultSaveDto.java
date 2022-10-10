@@ -21,6 +21,8 @@ public class NaverBlogResultSaveDto {
 
     private String md5HashCode;
 
+    private String keyword;
+
     public NaverBlogDateResult toEntity(){
         return NaverBlogDateResult.builder()
                 .title(title)
@@ -30,18 +32,20 @@ public class NaverBlogResultSaveDto {
                 .bloggerlink(bloggerlink)
                 .bloggername(bloggername)
                 .md5HahCode(md5HashCode)
+                .keyword(keyword)
                 .build();
     }
 
     @Builder
     public NaverBlogResultSaveDto(String title, String postdate, String description,
-                                  String link, String bloggerlink, String bloggername) {
+                                  String link, String bloggerlink, String bloggername, String keyword) {
         this.title = title;
         this.postdate = postdate;
         this.description = description;
         this.link = link;
         this.bloggerlink = bloggerlink;
         this.bloggername = bloggername;
+        this.keyword = keyword;
         this.md5HashCode = makeMd5(title+postdate+description+link+bloggerlink+bloggername );
     }
 
@@ -51,11 +55,12 @@ public class NaverBlogResultSaveDto {
 
         NaverBlogResultSaveDto obj = (NaverBlogResultSaveDto) o;
         return (this.title == obj.title && this.postdate == obj.postdate && this.description == obj.description &&
-                this.link == obj.link && this.bloggerlink == obj.bloggerlink && this.bloggername == obj.bloggerlink );
+                this.link == obj.link && this.bloggerlink == obj.bloggerlink && this.bloggername == obj.bloggerlink &&
+                this.keyword == obj.keyword );
     }
 
     @Override
     public int hashCode() {
-        return (title+postdate+description+link+bloggerlink+bloggername).hashCode();
+        return (title+postdate+description+link+bloggerlink+bloggername+keyword).hashCode();
     }
 }

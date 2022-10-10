@@ -20,6 +20,9 @@ public class ApiReponse extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(length = 256, nullable = false)
+    private String keyword;
+
     @Column(length = 256, nullable = true)
     private String lastBuildDate;
 
@@ -30,7 +33,8 @@ public class ApiReponse extends BaseTimeEntity {
     private String requestUrl;
 
     @Builder
-    public ApiReponse(String lastBuildDate, Long total, String requestUrl) {
+    public ApiReponse(String keyword, String lastBuildDate, Long total, String requestUrl) {
+        this.keyword = keyword;
         this.lastBuildDate = lastBuildDate;
         this.total = total;
         this.requestUrl = requestUrl;

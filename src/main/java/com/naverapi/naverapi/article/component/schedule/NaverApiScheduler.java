@@ -57,6 +57,8 @@ public class NaverApiScheduler {
         while(iter.hasNext()) {
             KeyWord key = iter.next();
             naverApiService.getBlogContentsSortByDate(key.getKeyword());
+            naverApiService.getCafeContentsSortByDate(key.getKeyword());
+            naverApiService.getNewsContentsSortByDate(key.getKeyword());
         }
     }
 
