@@ -1,12 +1,11 @@
 package com.naverapi.naverapi.keyword.ui.dto;
 
 import com.naverapi.naverapi.keyword.domain.KeyWord;
-import com.naverapi.naverapi.user.domain.User;
+import com.naverapi.naverapi.keyword.ui.validation.MaxKeyword;
 import com.naverapi.naverapi.user.infra.SessionUser;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +14,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class KeyWordAddRequest {
+    @MaxKeyword
     private String userKeyWordList;
     private static final String TOKEN_SEPARATOR = ",";
 

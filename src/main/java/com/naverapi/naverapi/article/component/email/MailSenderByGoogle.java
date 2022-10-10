@@ -18,7 +18,7 @@ public class MailSenderByGoogle {
     @Autowired
     private JavaMailSender mailSender;
 
-    public void sendMailHtml(Email email) {
+    public String sendMailHtml(Email email) {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
 
         try {
@@ -30,9 +30,10 @@ public class MailSenderByGoogle {
 
             mailSender.send( mimeMessage );
             log.info("msg send : " + mimeMessage.getMessageID());
-
+            return "success";
         } catch ( MessagingException e ) {
             log.info(e.getMessage());
+            return e.getMessage();
         }
     }
 }

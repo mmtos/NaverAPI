@@ -2,6 +2,7 @@ package com.naverapi.naverapi.article.domain.email;
 
 import javax.persistence.*;
 
+import com.naverapi.naverapi.user.domain.User;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,6 +25,18 @@ public class Email {
 
     @Column(length = 4096, nullable = false)
     private String message;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "GL_USER_ID")
+    private User user;
+
+    public void setUser(User user) {
+        if(this.user != null ){
+            this.user.getEmailList().remove(this);
+        }
+        this.user = user;
+        user.getEmailList().add(this);
+    }
 
     @Builder
     public Email(String address, String title, String message){
