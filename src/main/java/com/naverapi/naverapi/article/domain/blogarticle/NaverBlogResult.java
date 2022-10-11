@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.naverapi.naverapi.article.domain.newsarticle.NaverNewsResult;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -53,4 +55,17 @@ public class NaverBlogResult {
         this.md5HahCode = md5HahCode;
         this.keyword = keyword;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if(!(o instanceof NaverBlogResult)) return false;
+
+        NaverBlogResult obj = (NaverBlogResult) o;
+        return (this.title.equals(obj.title) && this.postdate.equals(obj.postdate) && this.description.equals(obj.description) &&
+                this.link.equals(obj.link) && this.bloggerlink.equals(obj.bloggerlink) && this.bloggername.equals(obj.bloggername) &&
+                this.md5HahCode.equals(obj.md5HahCode) && this.keyword.equals(obj.keyword) );
+    }
+
+    @Override
+    public int hashCode() { return (title+postdate+link+description+link+bloggerlink+bloggername+md5HahCode+keyword).hashCode(); }
 }
