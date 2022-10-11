@@ -7,7 +7,6 @@ import com.naverapi.naverapi.article.domain.email.EmailEvent;
 import com.naverapi.naverapi.article.domain.email.EmailStatus;
 import com.naverapi.naverapi.article.domain.event.EmailEventQueue;
 import com.naverapi.naverapi.article.ui.dto.EmailSaveDto;
-import com.naverapi.naverapi.user.application.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,8 +21,6 @@ public class EmailEventWorker implements Runnable{
 
     private final EmailService emailService;
 
-    private final UserService userService;
-
     private final NotificationService notificationService;
 
     @Override
@@ -36,7 +33,7 @@ public class EmailEventWorker implements Runnable{
             Email emailNeedToSend = emailEvent.getEmail();
             // 이메일 정보로 user를 조회하여 메일 발송 - 비동기 처리
             CompletableFuture<String> futureResult = notificationService.sendNotificationByEmail(
-                    userService.findUserByEmail( emailNeedToSend.getAddress()).toEntity() );
+                    emailEvent.getMailContent() );
             futureResult.join();
             String result = null;
 

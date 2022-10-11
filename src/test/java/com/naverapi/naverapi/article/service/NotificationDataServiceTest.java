@@ -4,6 +4,7 @@ import com.naverapi.naverapi.article.application.service.apirequest.NaverApiRequ
 import com.naverapi.naverapi.article.application.service.article.ArticleService;
 import com.naverapi.naverapi.article.application.service.notification.NotificationService;
 import com.naverapi.naverapi.article.component.event.EventPublisher;
+import com.naverapi.naverapi.article.ui.dto.NaverBlogArticleResponseDto;
 import com.naverapi.naverapi.keyword.domain.KeyWord;
 import com.naverapi.naverapi.keyword.domain.KeyWordRepository;
 import com.naverapi.naverapi.user.application.service.UserService;
@@ -43,6 +44,16 @@ public class NotificationDataServiceTest {
 
     @Autowired
     private UserService userService;
+
+    @Test
+    void test3(){
+        naverApiRequestService.getBlogContentsSortByDate("수리남");
+        List<NaverBlogArticleResponseDto> bList = articleService.getBlogArticleListForSendEmail("수리남");
+
+        for ( NaverBlogArticleResponseDto dto : bList) {
+            System.out.println(dto.getKeyword() + " " + dto.getBloggerlink());
+        }
+    }
 
     @Test
     void test2(){
