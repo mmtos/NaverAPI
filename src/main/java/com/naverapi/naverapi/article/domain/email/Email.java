@@ -2,7 +2,6 @@ package com.naverapi.naverapi.article.domain.email;
 
 import javax.persistence.*;
 
-import com.naverapi.naverapi.user.domain.User;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

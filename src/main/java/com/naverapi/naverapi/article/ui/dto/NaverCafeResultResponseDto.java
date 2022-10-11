@@ -1,5 +1,6 @@
 package com.naverapi.naverapi.article.ui.dto;
 
+import com.naverapi.naverapi.article.domain.blogarticle.NaverBlogDateResult;
 import com.naverapi.naverapi.article.domain.cafearticle.NaverCafeResult;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,6 +19,8 @@ public class NaverCafeResultResponseDto {
     private String md5HahCode;
     private String keyword;
 
+
+
     public NaverCafeResult toEntity(){
         return NaverCafeResult.builder()
                 .title(title)
@@ -30,15 +33,15 @@ public class NaverCafeResultResponseDto {
                 .build();
     }
 
+
     @Builder
-    public NaverCafeResultResponseDto(String title, String link, String description, String cafeName, String cafeUrl,
-                                      String md5HashCode, String keyword) {
-        this.title = title;
-        this.link = link;
-        this.description = description;
-        this.cafeName = cafeName;
-        this.cafeUrl = cafeUrl;
-        this.md5HahCode = md5HashCode;
-        this.keyword = keyword;
+    public NaverCafeResultResponseDto(NaverCafeResult naverCafeResult) {
+        this.title = naverCafeResult.getTitle();
+        this.link = naverCafeResult.getLink();
+        this.description = naverCafeResult.getDescription();
+        this.cafeName = naverCafeResult.getCafeName();
+        this.cafeUrl = naverCafeResult.getCafeUrl();
+        this.md5HahCode = naverCafeResult.getMd5HahCode();
+        this.keyword = naverCafeResult.getKeyword();
     }
 }

@@ -77,7 +77,6 @@ public class NaverApiScheduler {
             // 이메일 이벤트 생성
             publisher.publish(EmailEvent.of(EmailStatus.STANDBY, EmailType.BLOG, "test", email));
         }
-
     }
 
     @Async("taskScheduler")

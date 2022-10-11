@@ -18,6 +18,8 @@ public class NaverNewsResultResponseDto {
     private String md5HahCode;
     private String keyword;
 
+
+
     public NaverNewsResult toEntity(){
         return NaverNewsResult.builder()
                 .title(title)
@@ -31,13 +33,12 @@ public class NaverNewsResultResponseDto {
     }
 
     @Builder
-    public NaverNewsResultResponseDto(String title, String originallink, String link, String description, String pubDate,
-                                      String md5HahCode, String keyword) {
-        this.title = title;
-        this.link = link;
-        this.description = description;
-        this.pubDate = pubDate;
-        this.md5HahCode = md5HahCode;
-        this.keyword = keyword;
+    public NaverNewsResultResponseDto(NaverNewsResult naverNewsResult) {
+        this.title = naverNewsResult.getTitle();
+        this.link = naverNewsResult.getLink();
+        this.description = naverNewsResult.getDescription();
+        this.pubDate = naverNewsResult.getPubDate();
+        this.md5HahCode = naverNewsResult.getMd5HahCode();
+        this.keyword = naverNewsResult.getKeyword();
     }
 }

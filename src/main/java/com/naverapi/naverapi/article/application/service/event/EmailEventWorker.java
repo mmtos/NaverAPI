@@ -36,7 +36,7 @@ public class EmailEventWorker implements Runnable{
             Email emailNeedToSend = emailEvent.getEmail();
             // 이메일 정보로 user를 조회하여 메일 발송 - 비동기 처리
             CompletableFuture<String> futureResult = notificationService.sendNotificationByEmail(
-                    userService.findUserByEmail(emailNeedToSend.getAddress()).toEntity() );
+                    userService.findUserByEmail( emailNeedToSend.getAddress()).toEntity() );
             futureResult.join();
             String result = null;
 

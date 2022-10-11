@@ -27,6 +27,18 @@ public class NaverBlogArticleResponseDto {
 
     private String keyword;
 
+    @Builder
+    public NaverBlogArticleResponseDto(NaverBlogDateResult naverBlogDateResult) {
+        this.title = naverBlogDateResult.getTitle();
+        this.postdate = naverBlogDateResult.getPostdate();
+        this.description = naverBlogDateResult.getDescription();
+        this.link = naverBlogDateResult.getLink();
+        this.bloggerlink = naverBlogDateResult.getBloggerlink();
+        this.bloggername = naverBlogDateResult.getBloggername();
+        this.md5HahCode = naverBlogDateResult.getMd5HahCode();
+        this.keyword = naverBlogDateResult.getKeyword();
+    }
+
     public NaverBlogDateResult toEntity() {
         return NaverBlogDateResult.builder()
                 .title(title)
@@ -38,19 +50,6 @@ public class NaverBlogArticleResponseDto {
                 .md5HahCode(md5HahCode)
                 .keyword(keyword)
                 .build();
-    }
-
-    @Builder
-    public NaverBlogArticleResponseDto( String title, String postdate, String description, String link,
-                                        String bloggerlink, String bloggername, String md5HahCode, String keyword) {
-        this.title = title;
-        this.postdate = postdate;
-        this.description = description;
-        this.link = link;
-        this.bloggerlink = bloggerlink;
-        this.bloggername = bloggername;
-        this.md5HahCode = md5HahCode;
-        this.keyword = keyword;
     }
 
     @Override
