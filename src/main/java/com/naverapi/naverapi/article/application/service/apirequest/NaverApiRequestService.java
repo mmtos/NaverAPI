@@ -1,5 +1,6 @@
 package com.naverapi.naverapi.article.application.service.apirequest;
 
+import com.naverapi.naverapi.article.application.service.article.ArticleService;
 import com.naverapi.naverapi.article.component.api.NaverSearchApi;
 import com.naverapi.naverapi.article.domain.apireponse.ApiReponseRepository;
 import com.naverapi.naverapi.article.domain.blogarticle.NaverBlogResultRepository;
@@ -43,12 +44,16 @@ public class NaverApiRequestService {
     private ApiReponseRepository apiReponseRepository;
     private NaverSearchApi naverSearchApi;
 
+    private ArticleService articleService;
+
     @Transactional
     public int getBlogContentsSortByDate( String keyword, int cnt ) {
         // api 요청 로직 ( api 요청은 비동기입니다. )
         List<ApiResponseSaveDto> responseList = getTotalResponseResult(keyword, TYPE_BLOG, TYPE_DATE, cnt);
         // 블로그 콘텐츠 관련 목록
-        List<NaverBlogResultSaveDto> saveDtoList = getSaveBlogArticleList(responseList);
+//        List<NaverBlogResultSaveDto> saveDtoList = getSaveBlogArticleList(responseList);
+
+        List<NaverBlogResultSaveDto> saveDtoList = articleService.deleteDuplicationBlogArticle(keyword, getSaveBlogArticleList(responseList));
 
         // 저장 로직
         for ( NaverBlogResultSaveDto dto : saveDtoList) {
@@ -63,7 +68,10 @@ public class NaverApiRequestService {
     @Transactional
     public int getCafeContentsSortByDate( String keyword, int cnt ) {
         List<ApiResponseSaveDto> apiResponseSaveDtoList = getTotalResponseResult(keyword, TYPE_CAFE, TYPE_DATE, cnt);
-        List<NaverCafeResultSaveDto> saveDtoList = getSaveCafeArticleList(apiResponseSaveDtoList);
+
+//        List<NaverCafeResultSaveDto> saveDtoList = getSaveCafeArticleList(apiResponseSaveDtoList);
+        List<NaverCafeResultSaveDto> saveDtoList = articleService.deleteDuplicationCafeArticle(keyword, getSaveCafeArticleList(apiResponseSaveDtoList));
+
         for( NaverCafeResultSaveDto dto : saveDtoList ) {
             naverCafeResultRepository.save(dto.toEntity());
         }
@@ -76,7 +84,9 @@ public class NaverApiRequestService {
     @Transactional
     public int getNewsContentsSortByDate(String keyword, int cnt ) {
         List<ApiResponseSaveDto> apiResponseSaveDtoList = getTotalResponseResult(keyword, TYPE_NEWS, TYPE_DATE, cnt);
-        List<NaverNewsResultSaveDto> saveDtoList = getSaveNewsArticleList(apiResponseSaveDtoList);
+//        List<NaverNewsResultSaveDto> saveDtoList = getSaveNewsArticleList(apiResponseSaveDtoList);
+        List<NaverNewsResultSaveDto> saveDtoList = articleService.deleteDuplicationNewsArticle(keyword,getSaveNewsArticleList(apiResponseSaveDtoList));
+
         for( NaverNewsResultSaveDto dto : saveDtoList ) {
             naverNewsResultRepository.save(dto.toEntity());
         }

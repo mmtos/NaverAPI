@@ -31,7 +31,7 @@ public class ArticleService {
 
     public List<NaverBlogResultSaveDto> deleteDuplicationBlogArticle( String keyword , List<NaverBlogResultSaveDto> newList ){
 
-        List<NaverBlogResultSaveDto> list = null;
+        List<NaverBlogResultSaveDto> list = new ArrayList<>();
         List<NaverBlogArticleResponseDto> oldList = getBlogArticleBeforeSaving100(keyword);
 
         List<NaverBlogResult> newEntityList = new ArrayList<>();
@@ -69,7 +69,7 @@ public class ArticleService {
 
     public List<NaverCafeResultSaveDto> deleteDuplicationCafeArticle(String keyword , List<NaverCafeResultSaveDto> newList ){
 
-        List<NaverCafeResultSaveDto> list = null;
+        List<NaverCafeResultSaveDto> list = new ArrayList<>();
         List<NaverCafeResultResponseDto> oldList = getCafeArticleBeforeSaving100(keyword);
 
         List<NaverCafeResult> newEntityList = new ArrayList<>();
@@ -106,7 +106,7 @@ public class ArticleService {
 
     public List<NaverNewsResultSaveDto> deleteDuplicationNewsArticle( String keyword , List<NaverNewsResultSaveDto> newList ){
 
-        List<NaverNewsResultSaveDto> list = null;
+        List<NaverNewsResultSaveDto> list = new ArrayList<>();
         List<NaverNewsResultResponseDto> oldList = getNewsArticleBeforeSaving100(keyword);
 
         List<NaverNewsResult> newEntityList = new ArrayList<>();
