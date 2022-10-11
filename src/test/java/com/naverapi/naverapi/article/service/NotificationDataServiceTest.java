@@ -47,12 +47,12 @@ public class NotificationDataServiceTest {
 
     @Test
     void test3(){
-        naverApiRequestService.getBlogContentsSortByDate("수리남");
-        List<NaverBlogArticleResponseDto> bList = articleService.getBlogArticleListForSendEmail("수리남");
-
-        for ( NaverBlogArticleResponseDto dto : bList) {
-            System.out.println(dto.getKeyword() + " " + dto.getBloggerlink());
-        }
+//        naverApiRequestService.getBlogContentsSortByDate("수리남");
+//        List<NaverBlogArticleResponseDto> bList = articleService.getBlogArticleListForSendEmail("수리남");
+//
+//        for ( NaverBlogArticleResponseDto dto : bList) {
+//            System.out.println(dto.getKeyword() + " " + dto.getBloggerlink());
+//        }
     }
 
     @Test
