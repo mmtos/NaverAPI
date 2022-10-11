@@ -47,7 +47,7 @@ public class NaverApiScheduler {
 
     private final ArticleService articleService;
 
-    @Scheduled( cron = "0 */1 * * * *")
+    @Scheduled( cron = "0 */59 * * * *")
     public void getAllKeyAndUpdateBlog() throws JsonProcessingException {
 
         List<UserResponseDto> userResponseDtoList = userService.findAllDesc();
