@@ -1,6 +1,6 @@
 package com.naverapi.naverapi.article.ui.dto;
 
-import com.naverapi.naverapi.article.domain.blogarticle.NaverBlogDateResult;
+import com.naverapi.naverapi.article.domain.blogarticle.NaverBlogResult;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,8 +23,8 @@ public class NaverBlogResultSaveDto {
 
     private String keyword;
 
-    public NaverBlogDateResult toEntity(){
-        return NaverBlogDateResult.builder()
+    public NaverBlogResult toEntity(){
+        return NaverBlogResult.builder()
                 .title(title)
                 .postdate(postdate)
                 .description(description)

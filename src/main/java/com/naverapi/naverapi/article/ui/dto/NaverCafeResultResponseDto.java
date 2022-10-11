@@ -1,6 +1,5 @@
 package com.naverapi.naverapi.article.ui.dto;
 
-import com.naverapi.naverapi.article.domain.blogarticle.NaverBlogDateResult;
 import com.naverapi.naverapi.article.domain.cafearticle.NaverCafeResult;
 import lombok.Builder;
 import lombok.Getter;

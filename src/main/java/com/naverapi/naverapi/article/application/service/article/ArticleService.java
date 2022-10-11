@@ -1,6 +1,6 @@
 package com.naverapi.naverapi.article.application.service.article;
 
-import com.naverapi.naverapi.article.domain.blogarticle.NaverBlogDateRepository;
+import com.naverapi.naverapi.article.domain.blogarticle.NaverBlogResultRepository;
 import com.naverapi.naverapi.article.domain.cafearticle.NaverCafeResultRepository;
 import com.naverapi.naverapi.article.domain.newsarticle.NaverNewsResultRepository;
 import com.naverapi.naverapi.article.ui.dto.NaverBlogArticleResponseDto;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ArticleService {
 
-    private final NaverBlogDateRepository blogRepo;
+    private final NaverBlogResultRepository blogRepo;
 
     private final NaverCafeResultRepository cafeRepo;
 

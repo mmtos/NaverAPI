@@ -1,6 +1,6 @@
 package com.naverapi.naverapi.article.ui.dto;
 
-import com.naverapi.naverapi.article.domain.blogarticle.NaverBlogDateResult;
+import com.naverapi.naverapi.article.domain.blogarticle.NaverBlogResult;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,19 +28,19 @@ public class NaverBlogArticleResponseDto {
     private String keyword;
 
     @Builder
-    public NaverBlogArticleResponseDto(NaverBlogDateResult naverBlogDateResult) {
-        this.title = naverBlogDateResult.getTitle();
-        this.postdate = naverBlogDateResult.getPostdate();
-        this.description = naverBlogDateResult.getDescription();
-        this.link = naverBlogDateResult.getLink();
-        this.bloggerlink = naverBlogDateResult.getBloggerlink();
-        this.bloggername = naverBlogDateResult.getBloggername();
-        this.md5HahCode = naverBlogDateResult.getMd5HahCode();
-        this.keyword = naverBlogDateResult.getKeyword();
+    public NaverBlogArticleResponseDto(NaverBlogResult naverBlogResult) {
+        this.title = naverBlogResult.getTitle();
+        this.postdate = naverBlogResult.getPostdate();
+        this.description = naverBlogResult.getDescription();
+        this.link = naverBlogResult.getLink();
+        this.bloggerlink = naverBlogResult.getBloggerlink();
+        this.bloggername = naverBlogResult.getBloggername();
+        this.md5HahCode = naverBlogResult.getMd5HahCode();
+        this.keyword = naverBlogResult.getKeyword();
     }
 
-    public NaverBlogDateResult toEntity() {
-        return NaverBlogDateResult.builder()
+    public NaverBlogResult toEntity() {
+        return NaverBlogResult.builder()
                 .title(title)
                 .postdate(postdate)
                 .description(description)

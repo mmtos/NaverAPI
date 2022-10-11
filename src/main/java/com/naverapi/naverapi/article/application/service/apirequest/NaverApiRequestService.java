@@ -2,7 +2,7 @@ package com.naverapi.naverapi.article.application.service.apirequest;
 
 import com.naverapi.naverapi.article.component.api.NaverSearchApi;
 import com.naverapi.naverapi.article.domain.apireponse.ApiReponseRepository;
-import com.naverapi.naverapi.article.domain.blogarticle.NaverBlogDateRepository;
+import com.naverapi.naverapi.article.domain.blogarticle.NaverBlogResultRepository;
 import com.naverapi.naverapi.article.domain.cafearticle.NaverCafeResultRepository;
 import com.naverapi.naverapi.article.domain.newsarticle.NaverNewsResultRepository;
 import com.naverapi.naverapi.article.ui.dto.ApiResponseSaveDto;
@@ -35,7 +35,7 @@ public class NaverApiRequestService {
 
     private final static boolean TYPE_SIM = true;
     private final static boolean TYPE_DATE = false;
-    private NaverBlogDateRepository naverBlogResultRepository;
+    private NaverBlogResultRepository naverBlogResultRepository;
 
     private NaverCafeResultRepository naverCafeResultRepository;
 
