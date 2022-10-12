@@ -67,7 +67,7 @@ public class NaverApiScheduler {
         }
     }
 
-    @Scheduled( cron = "0 */2 * * * *")
+    @Scheduled( cron = "0 */59 * * * *")
     public void getAllUserAndSendEmail() throws InterruptedException, JsonProcessingException {
         // 모든 유저를 조회한다.
         List<NaverBlogArticleResponseDto> bList = new ArrayList<>();
