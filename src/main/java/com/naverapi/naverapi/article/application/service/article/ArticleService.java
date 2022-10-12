@@ -9,6 +9,8 @@ import com.naverapi.naverapi.article.domain.newsarticle.NaverNewsResultRepositor
 import com.naverapi.naverapi.article.ui.dto.*;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -147,6 +149,7 @@ public class ArticleService {
                 .stream().map(NaverBlogArticleResponseDto::new).collect(Collectors.toList());
     }
 
+    @Cacheable(cacheNames = "blogArticleList")
     @Transactional(readOnly = true)
     private List<NaverBlogArticleResponseDto> getBlogArticleBeforeSaving100( String keyword ) {
         return blogRepo.findTop100ByKeywordOrderByIdDesc(keyword)
@@ -158,7 +161,7 @@ public class ArticleService {
         return cafeRepo.findTop5ByKeywordOrderByIdDesc(keyword)
                 .stream().map(NaverCafeResultResponseDto::new).collect(Collectors.toList());
     }
-
+    @Cacheable(cacheNames = "cafeArticleList")
     @Transactional(readOnly = true)
     private List<NaverCafeResultResponseDto> getCafeArticleBeforeSaving100( String keyword ) {
         return cafeRepo.findTop100ByKeywordOrderByIdDesc(keyword)
@@ -171,6 +174,7 @@ public class ArticleService {
                 .stream().map(NaverNewsResultResponseDto::new).collect(Collectors.toList());
     }
 
+    @Cacheable(cacheNames = "newsArticleList")
     @Transactional(readOnly = true)
     private List<NaverNewsResultResponseDto> getNewsArticleBeforeSaving100( String keyword ) {
         return newsRepo.findTop100ByKeywordOrderByIdDesc(keyword)

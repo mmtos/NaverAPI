@@ -47,7 +47,7 @@ public class NaverApiScheduler {
 
     private final ArticleService articleService;
 
-    @Scheduled( cron = "0 */59 * * * *")
+    @Scheduled( cron = "0 */1 * * * *")
     public void getAllKeyAndUpdateBlog() throws JsonProcessingException {
 
         List<UserResponseDto> userResponseDtoList = userService.findAllDesc();
@@ -67,7 +67,7 @@ public class NaverApiScheduler {
         }
     }
 
-    @Scheduled( cron = "0 */1 * * * *")
+    @Scheduled( cron = "0 */2 * * * *")
     public void getAllUserAndSendEmail() throws InterruptedException, JsonProcessingException {
         // 모든 유저를 조회한다.
         List<NaverBlogArticleResponseDto> bList = new ArrayList<>();
