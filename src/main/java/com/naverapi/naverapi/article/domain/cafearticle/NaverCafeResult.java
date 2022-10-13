@@ -1,5 +1,6 @@
 package com.naverapi.naverapi.article.domain.cafearticle;
 
+import com.naverapi.naverapi.article.domain.newsarticle.NaverNewsResult;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,4 +48,17 @@ public class NaverCafeResult {
         this.md5HahCode = md5HahCode;
         this.keyword = keyword;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if(!(o instanceof NaverCafeResult)) return false;
+
+        NaverCafeResult obj = (NaverCafeResult) o;
+        return (this.title.equals(obj.title) && this.link.equals(obj.link) && this.description.equals(obj.description) &&
+                this.cafeName.equals(obj.cafeName) && this.cafeUrl.equals(obj.cafeUrl) && this.md5HahCode.equals(obj.md5HahCode) &&
+                this.keyword.equals(obj.keyword) );
+    }
+
+    @Override
+    public int hashCode() { return (title+link+description+cafeName+cafeUrl+keyword+md5HahCode).hashCode(); }
 }

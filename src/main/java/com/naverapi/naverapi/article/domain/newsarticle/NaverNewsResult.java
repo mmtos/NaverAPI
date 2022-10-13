@@ -48,4 +48,17 @@ public class NaverNewsResult {
         this.md5HahCode = md5HahCode;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if(!(o instanceof NaverNewsResult)) return false;
+
+        NaverNewsResult obj = (NaverNewsResult) o;
+        return (this.title.equals(obj.title) && this.originallink.equals(obj.originallink) && this.link.equals(obj.link) &&
+                this.description.equals(obj.description) && this.pubDate.equals(obj.pubDate) && this.keyword.equals(obj.keyword) &&
+                this.md5HahCode.equals(obj.md5HahCode) );
+    }
+
+    @Override
+    public int hashCode() { return (title+originallink+link+description+pubDate+keyword+md5HahCode).hashCode(); }
+
 }

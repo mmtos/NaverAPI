@@ -1,8 +1,9 @@
 package com.naverapi.naverapi.article.application.service.apirequest;
 
+import com.naverapi.naverapi.article.application.service.article.ArticleService;
 import com.naverapi.naverapi.article.component.api.NaverSearchApi;
 import com.naverapi.naverapi.article.domain.apireponse.ApiReponseRepository;
-import com.naverapi.naverapi.article.domain.blogarticle.NaverBlogDateRepository;
+import com.naverapi.naverapi.article.domain.blogarticle.NaverBlogResultRepository;
 import com.naverapi.naverapi.article.domain.cafearticle.NaverCafeResultRepository;
 import com.naverapi.naverapi.article.domain.newsarticle.NaverNewsResultRepository;
 import com.naverapi.naverapi.article.ui.dto.ApiResponseSaveDto;
@@ -35,7 +36,7 @@ public class NaverApiRequestService {
 
     private final static boolean TYPE_SIM = true;
     private final static boolean TYPE_DATE = false;
-    private NaverBlogDateRepository naverBlogResultRepository;
+    private NaverBlogResultRepository naverBlogResultRepository;
 
     private NaverCafeResultRepository naverCafeResultRepository;
 
@@ -43,12 +44,14 @@ public class NaverApiRequestService {
     private ApiReponseRepository apiReponseRepository;
     private NaverSearchApi naverSearchApi;
 
+    private ArticleService articleService;
+
     @Transactional
-    public int getBlogContentsSortByDate( String keyword ) {
+    public int getBlogContentsSortByDate( String keyword, int cnt ) {
         // api 요청 로직 ( api 요청은 비동기입니다. )
-        List<ApiResponseSaveDto> responseList = getTotalResponseResult(keyword, TYPE_BLOG, TYPE_DATE);
+        List<ApiResponseSaveDto> responseList = getTotalResponseResult(keyword, TYPE_BLOG, TYPE_DATE, cnt);
         // 블로그 콘텐츠 관련 목록
-        List<NaverBlogResultSaveDto> saveDtoList = getSaveBlogArticleList(responseList);
+        List<NaverBlogResultSaveDto> saveDtoList = articleService.deleteDuplicationBlogArticle(keyword, getSaveBlogArticleList(responseList));
 
         // 저장 로직
         for ( NaverBlogResultSaveDto dto : saveDtoList) {
@@ -61,9 +64,11 @@ public class NaverApiRequestService {
     }
 
     @Transactional
-    public int getCafeContentsSortByDate( String keyword ) {
-        List<ApiResponseSaveDto> apiResponseSaveDtoList = getTotalResponseResult(keyword, TYPE_CAFE, TYPE_DATE);
-        List<NaverCafeResultSaveDto> saveDtoList = getSaveCafeArticleList(apiResponseSaveDtoList);
+    public int getCafeContentsSortByDate( String keyword, int cnt ) {
+        List<ApiResponseSaveDto> apiResponseSaveDtoList = getTotalResponseResult(keyword, TYPE_CAFE, TYPE_DATE, cnt);
+
+        List<NaverCafeResultSaveDto> saveDtoList = articleService.deleteDuplicationCafeArticle(keyword, getSaveCafeArticleList(apiResponseSaveDtoList));
+
         for( NaverCafeResultSaveDto dto : saveDtoList ) {
             naverCafeResultRepository.save(dto.toEntity());
         }
@@ -74,9 +79,11 @@ public class NaverApiRequestService {
     }
 
     @Transactional
-    public int getNewsContentsSortByDate(String keyword ) {
-        List<ApiResponseSaveDto> apiResponseSaveDtoList = getTotalResponseResult(keyword, TYPE_NEWS, TYPE_DATE);
-        List<NaverNewsResultSaveDto> saveDtoList = getSaveNewsArticleList(apiResponseSaveDtoList);
+    public int getNewsContentsSortByDate(String keyword, int cnt ) {
+        List<ApiResponseSaveDto> apiResponseSaveDtoList = getTotalResponseResult(keyword, TYPE_NEWS, TYPE_DATE, cnt);
+
+        List<NaverNewsResultSaveDto> saveDtoList = articleService.deleteDuplicationNewsArticle(keyword,getSaveNewsArticleList(apiResponseSaveDtoList));
+
         for( NaverNewsResultSaveDto dto : saveDtoList ) {
             naverNewsResultRepository.save(dto.toEntity());
         }
@@ -86,9 +93,9 @@ public class NaverApiRequestService {
         return saveDtoList.size();
     }
 
-    private List<ApiResponseSaveDto> getTotalResponseResult( String keyword, int articleType, boolean sortType ){
+    private List<ApiResponseSaveDto> getTotalResponseResult( String keyword, int articleType, boolean sortType, int cnt ){
         List<ApiResponseSaveDto> responseList = new ArrayList<>();
-        for (int i = 0; i < MAX_CNT; i++) {
+        for (int i = 0; i < cnt; i++) {
             String url = makeUrl(articleType, keyword, (1 + (100*i)) , sortType );
             ApiResponseSaveDto result = apiResponseParser(url, keyword);
             if(result != null) {

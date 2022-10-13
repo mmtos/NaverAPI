@@ -13,12 +13,14 @@ public class EmailEvent {
 
     Email email;
 
-    public static  EmailEvent create(EmailType type, String typeDetail, Email email) {
-        return EmailEvent.of(EmailStatus.STANDBY, type, typeDetail, email);
+    MailContent mailContent;
+
+    public static  EmailEvent create(EmailType type, String typeDetail, Email email, MailContent mailContent) {
+        return EmailEvent.of(EmailStatus.STANDBY, type, typeDetail, email, mailContent);
     }
 
     public EmailEvent updateStatus(EmailStatus updateStatus) {
-        return EmailEvent.of(updateStatus, type, typeDetail, email);
+        return EmailEvent.of(updateStatus, type, typeDetail, email, mailContent);
     }
 
     public boolean isStandby() {
