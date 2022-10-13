@@ -2,6 +2,8 @@
 
 :star2: [`Notification Service MSA 분리하기`](https://github.com/t0e8r1r4y/-MSA-Notification_Service/blob/main/README.md) 프로젝트의 기본 뼈대입니다.
 
+:small_orange_diamond: 키술키워드 : Spring, [cache](https://github.com/t0e8r1r4y/blogContents/blob/main/Cache/Cache.md), [EDP](https://github.com/t0e8r1r4y/blogContents/blob/main/ArchitecturalPatterns/EDA.md)
+
 ✅ 프로젝트 개요
 
 - Notification 서비스를 회사 장애 알림 시스템 형태로 구현하고 싶었는데, 기회가 되지 않아 사이드 프로젝트로 만들었습니다.
