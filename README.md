@@ -2,7 +2,7 @@
 
 :star2: [`Notification Service MSA 분리하기`](https://github.com/t0e8r1r4y/-MSA-Notification_Service/blob/main/README.md) 프로젝트의 기본 뼈대입니다.
 
-:small_orange_diamond: 키술키워드 : Spring, [cache](https://github.com/t0e8r1r4y/blogContents/blob/main/Cache/Cache.md), [EDP](https://github.com/t0e8r1r4y/blogContents/blob/main/ArchitecturalPatterns/EDA.md)
+:small_orange_diamond: 기술키워드 : Spring, [cache](https://github.com/t0e8r1r4y/blogContents/blob/main/Cache/Cache.md), [EDP](https://github.com/t0e8r1r4y/blogContents/blob/main/ArchitecturalPatterns/EDA.md)
 
 ✅ 프로젝트 개요
 
