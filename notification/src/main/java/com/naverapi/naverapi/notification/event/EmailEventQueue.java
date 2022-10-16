@@ -1,9 +1,9 @@
 package com.naverapi.naverapi.notification.event;
-import com.naverapi.naverapi.notification.domain.email.EmailEvent;
-import lombok.extern.slf4j.Slf4j;
 
+import com.naverapi.naverapi.notification.domain.email.EmailEvent;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class EmailEventQueue {

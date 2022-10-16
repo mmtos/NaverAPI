@@ -1,34 +1,33 @@
 package com.naverapi.naverapi.notification.schedule;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.naverapi.naverapi.keyword.domain.KeyWord;
+import com.naverapi.naverapi.keyword.domain.KeyWordRepository;
 import com.naverapi.naverapi.notification.application.ArticleRequestService;
+import com.naverapi.naverapi.notification.application.EmailService;
 import com.naverapi.naverapi.notification.application.NotificationService;
 import com.naverapi.naverapi.notification.domain.email.Email;
 import com.naverapi.naverapi.notification.domain.email.EmailEvent;
 import com.naverapi.naverapi.notification.domain.email.EmailStatus;
 import com.naverapi.naverapi.notification.domain.email.EmailType;
 import com.naverapi.naverapi.notification.domain.email.MailContent;
-import com.naverapi.naverapi.notification.application.EmailService;
-import com.naverapi.naverapi.notification.event.EmailEventWorker;
 import com.naverapi.naverapi.notification.event.EmailEventPublisher;
 import com.naverapi.naverapi.notification.event.EmailEventQueue;
+import com.naverapi.naverapi.notification.event.EmailEventWorker;
 import com.naverapi.naverapi.notification.schedule.dto.BlogArticleDto;
 import com.naverapi.naverapi.notification.schedule.dto.CafeArticleDto;
 import com.naverapi.naverapi.notification.schedule.dto.NewsArticleDto;
-import com.naverapi.naverapi.keyword.domain.KeyWord;
-import com.naverapi.naverapi.keyword.domain.KeyWordRepository;
 import com.naverapi.naverapi.user.application.service.UserService;
 import com.naverapi.naverapi.user.ui.contorller.dto.UserResponseDto;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 @Slf4j
 @Component

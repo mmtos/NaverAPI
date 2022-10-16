@@ -1,12 +1,12 @@
 package com.naverapi.naverapi.user.ui.contorller.dto;
+
 import com.naverapi.naverapi.user.domain.Role;
 import com.naverapi.naverapi.user.domain.User;
-import lombok.Builder;
-import lombok.Getter;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
+import lombok.Builder;
+import lombok.Getter;
 
 @Getter
 public class UserResponseDto {

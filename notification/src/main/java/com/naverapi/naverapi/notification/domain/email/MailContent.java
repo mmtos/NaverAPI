@@ -4,12 +4,11 @@ import com.naverapi.naverapi.notification.schedule.dto.BlogArticleDto;
 import com.naverapi.naverapi.notification.schedule.dto.CafeArticleDto;
 import com.naverapi.naverapi.notification.schedule.dto.NewsArticleDto;
 import com.naverapi.naverapi.user.domain.User;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

@@ -2,7 +2,6 @@ package com.naverapi.naverapi.user.domain;
 
 import java.util.Optional;
 import java.util.stream.Stream;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

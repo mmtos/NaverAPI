@@ -1,12 +1,12 @@
 package com.naverapi.naverapi.apirequest.schedule.dto;
 
+import static com.naverapi.naverapi.apirequest.util.Md5.makeMd5;
+
 import com.naverapi.naverapi.apirequest.domain.article.BlogArticle;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import static com.naverapi.naverapi.apirequest.util.Md5.makeMd5;
 
 @Getter
 @Setter

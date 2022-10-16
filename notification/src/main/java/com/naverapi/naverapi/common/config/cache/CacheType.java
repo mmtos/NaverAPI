@@ -1,7 +1,6 @@
 package com.naverapi.naverapi.common.config.cache;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
 public enum CacheType {

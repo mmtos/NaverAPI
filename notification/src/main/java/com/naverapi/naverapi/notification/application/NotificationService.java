@@ -1,15 +1,14 @@
 package com.naverapi.naverapi.notification.application;
 
-import com.naverapi.naverapi.notification.domain.email.MailSenderByGoogle;
 import com.naverapi.naverapi.notification.domain.email.Email;
 import com.naverapi.naverapi.notification.domain.email.MailContent;
+import com.naverapi.naverapi.notification.domain.email.MailSenderByGoogle;
+import java.util.concurrent.CompletableFuture;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-
-import java.util.concurrent.CompletableFuture;
 
 @Service
 @Slf4j

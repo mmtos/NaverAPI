@@ -1,16 +1,15 @@
 package com.naverapi.naverapi.notification.event;
 
-import com.naverapi.naverapi.notification.application.NotificationService;
 import com.naverapi.naverapi.notification.application.EmailService;
+import com.naverapi.naverapi.notification.application.NotificationService;
 import com.naverapi.naverapi.notification.domain.email.Email;
 import com.naverapi.naverapi.notification.domain.email.EmailEvent;
 import com.naverapi.naverapi.notification.domain.email.EmailStatus;
 import com.naverapi.naverapi.notification.schedule.dto.EmailSaveDto;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor

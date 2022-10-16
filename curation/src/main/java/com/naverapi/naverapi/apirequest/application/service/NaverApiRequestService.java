@@ -1,24 +1,27 @@
 package com.naverapi.naverapi.apirequest.application.service;
 
 import com.naverapi.naverapi.apirequest.application.NaverSearchApi;
-import com.naverapi.naverapi.apirequest.domain.meta.ApiRequestMetaRepository;
 import com.naverapi.naverapi.apirequest.domain.article.BlogArticle;
 import com.naverapi.naverapi.apirequest.domain.article.BlogArticleRepository;
 import com.naverapi.naverapi.apirequest.domain.article.CafeArticle;
 import com.naverapi.naverapi.apirequest.domain.article.CafeArticleRepository;
 import com.naverapi.naverapi.apirequest.domain.article.NewsArticle;
 import com.naverapi.naverapi.apirequest.domain.article.NewsArticleRepository;
+import com.naverapi.naverapi.apirequest.domain.meta.ApiRequestMetaRepository;
 import com.naverapi.naverapi.apirequest.schedule.dto.ApiResponseSaveDto;
 import com.naverapi.naverapi.apirequest.schedule.dto.NaverBlogArticleResponseDto;
 import com.naverapi.naverapi.apirequest.schedule.dto.NaverBlogResultSaveDto;
 import com.naverapi.naverapi.apirequest.schedule.dto.NaverCafeResultResponseDto;
+import com.naverapi.naverapi.apirequest.schedule.dto.NaverCafeResultSaveDto;
 import com.naverapi.naverapi.apirequest.schedule.dto.NaverNewsResultResponseDto;
+import com.naverapi.naverapi.apirequest.schedule.dto.NaverNewsResultSaveDto;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.*;
-
-import com.naverapi.naverapi.apirequest.schedule.dto.NaverCafeResultSaveDto;
-import com.naverapi.naverapi.apirequest.schedule.dto.NaverNewsResultSaveDto;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

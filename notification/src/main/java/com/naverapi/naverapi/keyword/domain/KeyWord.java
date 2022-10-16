@@ -1,9 +1,11 @@
 package com.naverapi.naverapi.keyword.domain;
 
 import com.naverapi.naverapi.common.BaseTimeEntity;
-
-import javax.persistence.*;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
